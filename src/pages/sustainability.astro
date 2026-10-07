@@ -1,0 +1,103 @@
+---
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const pillars = [
+  { title: "Soil & Water", desc: "We support estates that have adopted soil-conservation terraces, rainwater harvesting and riparian buffer planting around waterways." },
+  { title: "Fair Wages", desc: "Our partner estates are committed to paying above the statutory Kenya agricultural wage, with housing, healthcare and schooling on the estate." },
+  { title: "Smallholder Inclusion", desc: "Over 60% of Kenyan tea comes from smallholders. We work directly with KTDA factories to keep their share of the chain fair and traceable." },
+  { title: "Energy & Carbon", desc: "Several of our partner estates have invested in biomass furnaces and solar drying, cutting their dependence on fossil fuels and timber." },
+  { title: "Packaging", desc: "Our standard export packs use recyclable polypropylene and natural hessian. We are trialling compostable inner liners for selected clients." },
+  { title: "Traceability", desc: "Every container we ship carries a unique lot reference — back-traceable to the auction catalogue number, the estate and the day of manufacture." },
+];
+
+const certifications = [
+  { name: "Kenya Tea Board", note: "Licensed Exporter", img: "kenya-tea-board.png" },
+  { name: "KEPHIS", note: "Phytosanitary compliance", img: "kephis.png" },
+  { name: "EATTA", note: "Member", img: "eatta.png" },
+  { name: "Chamber of Commerce", note: "Member", img: "chamber.png" },
+];
+
+// Put logos in /public/images/certifications/ using the file names above.
+// If a file is missing, its logo tile is hidden and the card shows text only.
+const logoBase = "/images/certifications/";
+---
+<Base
+  title="Sustainability & Quality — Kenyan Tea Exports"
+  description="How we source sustainably — soil and water, fair wages, smallholder inclusion, energy, packaging and traceability. Licensed by the Kenya Tea Board and a member of EATTA."
+>
+  <Header />
+
+ <section class="relative bg-[#0d3329] text-[#f4ecdc] py-24 md:py-32 overflow-hidden">
+  <img
+    src="/images/hero-sustainability.jpg"
+    alt=""
+    aria-hidden="true"
+    class="absolute inset-0 w-full h-full object-cover"
+    onerror="this.style.display='none'"
+  />
+  <div class="absolute inset-0 bg-gradient-to-br from-[#0d3329]/90 via-[#0d3329]/70 to-[#0d3329]/40"></div>
+  <div class="relative max-w-5xl mx-auto px-5 lg:px-8">
+    <p class="text-[#b9a48a] uppercase tracking-[0.3em] text-xs mb-6">Sustainability & Quality</p>
+    <h1 class="text-5xl md:text-7xl leading-[0.95]" style="font-family:'DM Serif Display',serif;font-weight:400;">
+      Tea that<br/><span class="text-[#b9a48a]">leaves the land</span><br/>better than we found it.
+    </h1>
+  </div>
+</section>
+
+  <section class="bg-[#f4ecdc] py-24">
+    <div class="max-w-4xl mx-auto px-5 lg:px-8">
+      <p class="text-[#0d3329] text-xl md:text-2xl leading-relaxed" style="font-family:'DM Serif Display',serif;font-weight:400;">
+        We believe the future of Kenyan tea is in the hands of the people who grow it. Our role is to make sure that the buyers we serve today strengthen the estates and the communities who will serve them tomorrow.
+      </p>
+    </div>
+  </section>
+
+  {/*<section class="bg-white py-24">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <p class="text-[#0d3329] uppercase tracking-[0.25em] text-xs mb-4">Our Six Pillars</p>
+      <h2 class="text-4xl md:text-5xl text-[#0d3329] leading-tight mb-14" style="font-family:'DM Serif Display',serif;font-weight:400;">How we work</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-[#0d3329]/10 border border-[#0d3329]/10">
+        {pillars.map((p) => (
+          <div class="bg-white p-8">
+            <h3 class="text-[#0d3329] text-xl mb-3" style="font-family:'DM Serif Display',serif;font-weight:400;">{p.title}</h3>
+            <p class="text-[#3d3d3d] text-sm leading-relaxed">{p.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>*/}
+
+  <section class="bg-[#0d3329] text-[#f4ecdc] py-24">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <p class="text-[#b9a48a] uppercase tracking-[0.25em] text-xs mb-4">Certifications & Memberships</p>
+      <h2 class="text-4xl md:text-5xl leading-tight mb-14 max-w-3xl" style="font-family:'DM Serif Display',serif;font-weight:400;">
+        Independently audited, transparently listed
+      </h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[#b9a48a]/20">
+        {certifications.map((c) => (
+          <div class="bg-[#0d3329] p-7">
+            <div class="mb-6 h-20 w-full flex items-center justify-center bg-[#f4ecdc] p-3">
+              <img
+                src={`${logoBase}${c.img}`}
+                alt={`${c.name} logo`}
+                height="64"
+                loading="lazy"
+                decoding="async"
+                class="max-h-full max-w-full object-contain"
+                onerror="this.parentElement.style.display='none'"
+              />
+            </div>
+            <p class="text-[#f4ecdc] text-xl mb-2" style="font-family:'DM Serif Display',serif;font-weight:400;">{c.name}</p>
+            <p class="text-[#b9a48a] text-xs uppercase tracking-widest">{c.note}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#f4ecdc] py-24"> <div class="max-w-4xl mx-auto px-5 lg:px-8 text-center"> <h2 class="text-4xl md:text-5xl text-[#0d3329] leading-tight" style="font-family:'DM Serif Display',serif;font-weight:400;"> Our Commitment to Quality & Responsible Sourcing </h2> <p class="mt-5 text-[#3d3d3d]">Our certifications, memberships and sourcing practices reflect our commitment to quality, compliance and responsible tea trading.</p> <a href="/contact" class="mt-8 inline-flex items-center gap-2 px-7 py-4 bg-[#0d3329] text-[#f4ecdc] font-semibold hover:bg-[#1a4a3d]"> Enquire With Us → </a> </div> </section>
+
+  <Footer />
+</Base>

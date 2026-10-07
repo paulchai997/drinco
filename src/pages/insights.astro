@@ -1,0 +1,287 @@
+---
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import KleapForm from "../components/KleapForm";
+
+/* ───────────── 1. FEED SOURCES (edit freely) ─────────────
+   Each entry is any RSS/Atom URL. Google News search feeds are used by default
+   because they work for any query. To pull directly from a publisher, add its
+   own RSS URL here, e.g. { name: "Publisher", url: "https://example.com/feed/" } */
+const gnews = (q: string) =>
+  `https://news.google.com/rss/search?q=${encodeURIComponent(q + " when:30d")}&hl=en-KE&gl=KE&ceid=KE:en`;
+
+const FEEDS = [
+  { url: gnews('"Mombasa tea auction" OR "Kenya tea auction" OR EATTA') },
+  { url: gnews('KTDA OR "Tea Board of Kenya" OR "Kenyan tea"') },
+  { url: gnews('"orthodox tea" OR "CTC tea" Kenya') },
+  { url: gnews('tea exports Pakistan OR Egypt OR Kazakhstan OR "Middle East" Kenya') },
+];
+
+const MAX_ARTICLES = 7; // 1 featured + 6 in the grid
+
+/* ───────────── 2. FALLBACK (your original articles) ─────────────
+   Shown only if the live feeds fail or return too few items. */
+const fallbackArticles = [
+  { cat: "Market Update", date: "March 2025", title: "Mombasa auction prices soften as Pakistan demand rebounds", excerpt: "After a quiet Q4, the Mombasa floor saw BP1 prices ease 4% week-on-week as Pakistani buyers returned for the spring shipping window. A look at what that means for Q2 contracts.", read: "4 min read", url: "", image: "" },
+  { cat: "Origin", date: "February 2025", title: "How the Rift Valley micro-climate shapes Kenyan flavour", excerpt: "Why teas grown on the Kericho plateau taste different from those on the Nandi Hills — even when they're the same cultivar and processed in the same factory.", read: "6 min read", url: "", image: "" },
+  { cat: "Logistics", date: "January 2025", title: "Shipping Kenyan tea to Central Asia: the routes that work", excerpt: "Reefer versus dry, Bandar Abbas versus Aktau, transit insurance and customs. A practical guide for buyers in Kazakhstan, Uzbekistan and Kyrgyzstan.", read: "8 min read", url: "", image: "" },
+  { cat: "Quality", date: "December 2024", title: "Reading an Mombasa auction catalogue: a buyer's primer", excerpt: "What the catalogue abbreviations mean, how to spot a hidden gem, and why the 'invoice mark' is the single most important number on the page.", read: "5 min read", url: "", image: "" },
+  { cat: "Sustainability", date: "November 2024", title: "Smallholder tea and the KTDA factories explained", excerpt: "How Kenya's smallholder farmers — over 600,000 of them — feed the Mombasa auction, and why direct relationships with KTDA factories matter for buyers.", read: "7 min read", url: "", image: "" },
+  { cat: "Industry", date: "October 2024", title: "Orthodox vs CTC: which one does your market actually want?", excerpt: "A practical framework for choosing between orthodox and CTC grades for a specific destination market — and how to read the demand signals before you order.", read: "5 min read", url: "", image: "" },
+];
+
+/* ───────────── 3. HELPERS ───────────── */
+type Article = { cat: string; date: string; title: string; excerpt: string; read: string; url: string; image?: string; ts?: number };
+
+const decode = (s: string) =>
+  s.replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1")
+    .replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"').replace(/&#39;|&apos;/g, "'").replace(/&nbsp;/g, " ");
+const stripHtml = (s: string) => decode(s).replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+const tag = (block: string, name: string) => {
+  const m = block.match(new RegExp(`<${name}[^>]*>([\\s\\S]*?)</${name}>`, "i"));
+  return m ? m[1] : "";
+};
+const clip = (s: string, n: number) => (s.length > n ? s.slice(0, n).replace(/\s+\S*$/, "") + "…" : s);
+
+// Extract image URL from RSS item
+const extractImage = (item: string): string => {
+  // Try media:content first
+  const mediaContent = item.match(/<media:content[^>]*url="([^"]+)"/i)?.[1];
+  if (mediaContent) return mediaContent;
+  
+  // Try media:thumbnail
+  const mediaThumbnail = item.match(/<media:thumbnail[^>]*url="([^"]+)"/i)?.[1];
+  if (mediaThumbnail) return mediaThumbnail;
+  
+  // Try enclosure
+  const enclosure = item.match(/<enclosure[^>]*url="([^"]+)"/i)?.[1];
+  if (enclosure && /\.(jpg|jpeg|png|gif|webp)$/i.test(enclosure)) return enclosure;
+  
+  // Try img tag in description
+  const imgInDesc = item.match(/<description[^>]*>([\s\S]*?)<\/description>/i)?.[1]
+    .match(/<img[^>]*src="([^"]+)"/i)?.[1];
+  if (imgInDesc) return imgInDesc;
+  
+  // Try Google News image from content
+  const contentImg = item.match(/<img[^>]*src="([^"]+)"/i)?.[1];
+  if (contentImg) return contentImg;
+  
+  return "";
+};
+
+// Map headlines onto the category names your design already uses
+const CATEGORY_RULES: [RegExp, string][] = [
+  [/auction|price|prices|earn|sh\d|\$\d|market/i, "Market Update"],
+  [/orthodox|ctc|grade|quality|lab(oratory)?|standards?/i, "Quality"],
+  [/ship|port|freight|logistic|container|vessel|export/i, "Logistics"],
+  [/smallholder|farmer|climate|sustainab|ktda|rain|drought|el ni[nñ]o/i, "Sustainability"],
+  [/estate|region|kericho|nandi|origin|harvest|production/i, "Origin"],
+];
+const categorise = (t: string) => CATEGORY_RULES.find(([re]) => re.test(t))?.[1] ?? "Industry";
+
+// Keep only genuine tea-trade stories
+const isRelevant = (t: string) =>
+  /\btea\b|\bKTDA\b|\bEATTA\b/i.test(t) && !/spill the tea|tea party|bubble tea|milk tea|tea shop|tea room/i.test(t);
+
+async function loadFeed(url: string): Promise<Article[]> {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), 8000);
+  try {
+    const res = await fetch(url, { signal: ctrl.signal, headers: { "User-Agent": "Mozilla/5.0 (compatible; DrincoSite/1.0)" } });
+    if (!res.ok) return [];
+    const xml = await res.text();
+    const items = xml.match(/<item[\s\S]*?<\/item>/gi) ?? xml.match(/<entry[\s\S]*?<\/entry>/gi) ?? [];
+    return items.map((it): Article | null => {
+      let title = stripHtml(tag(it, "title"));
+      const link = stripHtml(tag(it, "link")) || (it.match(/<link[^>]*href="([^"]+)"/i)?.[1] ?? "");
+      const pub = tag(it, "pubDate") || tag(it, "published") || tag(it, "updated");
+      let source = stripHtml(tag(it, "source"));
+      // Google News titles look like "Headline - Publisher"
+      const split = title.lastIndexOf(" - ");
+      if (split > 20) {
+        if (!source) source = title.slice(split + 3);
+        title = title.slice(0, split);
+      }
+      const ts = Date.parse(pub);
+      if (!title || !link || Number.isNaN(ts) || !isRelevant(title)) return null;
+      let excerpt = clip(stripHtml(tag(it, "description") || tag(it, "summary")), 190);
+      // Google News descriptions only repeat the headline, so don't show that as an excerpt
+      if (excerpt.toLowerCase().startsWith(title.toLowerCase().slice(0, 30)) || excerpt.length < 40) excerpt = "";
+      const image = extractImage(it);
+      return {
+        cat: categorise(title),
+        date: new Date(ts).toLocaleDateString("en-GB", { month: "long", year: "numeric" }),
+        title,
+        excerpt: excerpt || `Read the full story${source ? ` at ${source}` : ""}.`,
+        read: source || "Tea industry news",
+        url: link,
+        image: image || undefined,
+        ts,
+      };
+    }).filter((a): a is Article => a !== null);
+  } catch {
+    return []; // a failing feed must never break the build
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+/* ───────────── 4. BUILD THE LIST ───────────── */
+const results = (await Promise.all(FEEDS.map((f) => loadFeed(f.url)))).flat();
+
+// de-duplicate near-identical headlines, newest first
+const seen = new Set<string>();
+const live = results
+  .sort((a, b) => (b.ts ?? 0) - (a.ts ?? 0))
+  .filter((a) => {
+    const key = a.title.toLowerCase().replace(/[^a-z0-9]/g, "").slice(0, 60);
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  })
+  .slice(0, MAX_ARTICLES);
+
+const articles: Article[] = live.length >= 3 ? live : fallbackArticles;
+const isLive = live.length >= 3;
+const featured = articles[0];
+const rest = articles.slice(1);
+
+const tags = ["Auction", "CTC", "Orthodox", "Origin", "Sustainability", "Logistics", "Quality", "Central Asia", "Middle East"];
+---
+<Base
+  title="Insights — News & Market Notes from Mombasa"
+  description="Tea market updates, origin reports, shipping guides and quality primers from the Mombasa auction floor."
+>
+  <Header />
+
+ <section class="relative bg-[#0d3329] text-[#f4ecdc] py-24 md:py-32 overflow-hidden">
+  <img
+    src="/images/hero-insights.jpg"
+    alt=""
+    aria-hidden="true"
+    class="absolute inset-0 w-full h-full object-cover"
+    onerror="this.style.display='none'"
+  />
+  <div class="absolute inset-0 bg-gradient-to-br from-[#0d3329]/90 via-[#0d3329]/70 to-[#0d3329]/40"></div>
+  <div class="relative max-w-5xl mx-auto px-5 lg:px-8">
+    <p class="text-[#b9a48a] uppercase tracking-[0.3em] text-xs mb-6">News & Insights</p>
+    <h1 class="text-5xl md:text-7xl leading-[0.95]" style="font-family:'DM Serif Display',serif;font-weight:400;">
+      Notes from<br/><span class="text-[#b9a48a]">the auction floor.</span>
+    </h1>
+    <p class="mt-8 text-lg text-[#f4ecdc]/85 max-w-2xl leading-relaxed">
+      Market updates, origin reports and shipping news from across the tea trade — refreshed automatically from leading industry sources.
+    </p>
+  </div>
+</section>
+
+  <section class="bg-[#f4ecdc] py-12 border-b border-[#0d3329]/10">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 flex flex-wrap items-center gap-3">
+      <span class="text-[#0d3329] text-xs uppercase tracking-widest mr-2">Topics</span>
+      {tags.map((t) => (
+        <span class="px-3 py-1.5 bg-white border border-[#0d3329]/15 text-[#0d3329] text-xs uppercase tracking-widest">{t}</span>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-white py-20">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <article class="grid lg:grid-cols-2 gap-12 pb-16 mb-16 border-b border-[#0d3329]/15">
+        <div>
+          <p class="text-[#b9a48a] text-xs uppercase tracking-widest mb-4">Featured · {featured.cat}</p>
+          <h2 class="text-3xl md:text-5xl text-[#0d3329] leading-tight mb-5" style="font-family:'DM Serif Display',serif;font-weight:400;">
+            {featured.url ? (
+              <a href={featured.url} target="_blank" rel="noopener noreferrer" class="hover:text-[#b9a48a] transition-colors">{featured.title}</a>
+            ) : featured.title}
+          </h2>
+          <p class="text-[#3d3d3d] leading-relaxed">{featured.excerpt}</p>
+          <p class="mt-6 text-sm text-[#3d3d3d] uppercase tracking-widest">{featured.date} · {featured.read}</p>
+          {featured.url && (
+            <a href={featured.url} target="_blank" rel="noopener noreferrer" class="mt-6 inline-flex items-center gap-2 text-[#0d3329] text-sm font-semibold hover:text-[#b9a48a] transition-colors">
+              Read full story →
+            </a>
+          )}
+        </div>
+        <div class="bg-[#0d3329] aspect-[4/3] flex items-center justify-center overflow-hidden">
+          {featured.image ? (
+            <img
+              src={featured.image}
+              alt={featured.title}
+              class="w-full h-full object-cover"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            />
+          ) : null}
+          <div class={featured.image ? "hidden" : "flex items-center justify-center"}>
+            <span class="text-[#b9a48a] text-9xl" style="font-family:'DM Serif Display',serif;">01</span>
+          </div>
+        </div>
+      </article>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-[#0d3329]/10 border border-[#0d3329]/10">
+        {rest.map((a) => (
+          <article class="relative bg-white p-7 group hover:bg-[#0d3329] transition-colors">
+            <p class="text-[#b9a48a] text-xs uppercase tracking-widest mb-3 group-hover:text-[#d4b896]">{a.cat} · {a.date}</p>
+            <h3 class="text-[#0d3329] group-hover:text-[#f4ecdc] text-xl mb-3 leading-tight" style="font-family:'DM Serif Display',serif;font-weight:400;">
+              {a.url ? (
+                <a href={a.url} target="_blank" rel="noopener noreferrer" class="after:content-[''] after:absolute after:inset-0">{a.title}</a>
+              ) : a.title}
+            </h3>
+            <p class="text-[#3d3d3d] group-hover:text-[#f4ecdc]/80 text-sm leading-relaxed mb-5">{a.excerpt}</p>
+            <p class="text-xs text-[#3d3d3d] group-hover:text-[#f4ecdc]/70 uppercase tracking-widest">{a.read}</p>
+          </article>
+        ))}
+      </div>
+
+      {isLive && (
+        <p class="mt-8 text-xs text-[#3d3d3d]/70">
+          Headlines are gathered automatically from third-party publishers and link to the original stories. All rights remain with the respective publishers.
+        </p>
+      )}
+    </div>
+  </section>
+
+  {/*<section class="bg-[#0d3329] text-[#f4ecdc] py-20 text-center">
+    <div class="max-w-3xl mx-auto px-5">
+      <h2 class="text-3xl md:text-4xl leading-tight" style="font-family:'DM Serif Display',serif;font-weight:400;">
+        Get the next one by email
+      </h2>
+      <p class="mt-5 text-[#f4ecdc]/80">
+        A short monthly note from the Mombasa floor — auction prices, shipping alerts and the one origin story we think is worth your time.
+      </p>
+      <div class="mt-10 max-w-md mx-auto">
+        <KleapForm
+          client:load
+          formId="newsletter"
+          title="Subscribe"
+          fields={[{ name: "email", label: "Email", type: "email", required: true }]}
+          submitText="Subscribe"
+          theme="dark"
+        />
+      </div>
+    </div>
+  </section>*/}
+
+  <section class="bg-[#0d3329] text-[#f4ecdc] py-20 text-center">
+  <div class="max-w-3xl mx-auto px-5">
+    <p class="text-[#b9a48a] uppercase tracking-[0.3em] text-xs mb-4">Work With Us</p>
+    <h2 class="text-3xl md:text-4xl leading-tight" style="font-family:'DM Serif Display',serif;font-weight:400;">
+      Looking to source Kenyan tea?
+    </h2>
+    <p class="mt-5 text-[#f4ecdc]/80">
+      Tell us the grade, volume and destination. We will come back with availability, samples and a quote against current Mombasa auction prices.
+    </p>
+    <div class="mt-10 flex flex-wrap justify-center gap-4">
+      <a href="/contact" class="inline-flex items-center gap-2 px-7 py-4 bg-[#b9a48a] text-[#0d3329] font-semibold hover:bg-[#d4b896] transition-colors">
+        Request a Quote
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="/our-tea" class="inline-flex items-center gap-2 px-7 py-4 border border-[#f4ecdc]/40 text-[#f4ecdc] hover:bg-[#f4ecdc]/10 transition-colors">
+        Explore Our Teas
+      </a>
+    </div>
+  </div>
+</section>
+
+  <Footer />
+</Base>

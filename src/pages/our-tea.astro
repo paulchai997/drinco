@@ -1,0 +1,228 @@
+---
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+// Put photos in /public/images/grades/ using the file names below.
+// Missing files fall back to a plain placeholder showing the grade code.
+const ctcGrades = [
+  { code: "BP1", name: "Broken Pekoe 1", img: "ctc-bp1.jpg", desc: "The benchmark grade — bright, well-twisted leaf producing a rich amber cup." },
+  { code: "PF1", name: "Pekoe Fannings 1", img: "ctc-pf1.jpg", desc: "Smaller broken leaf for tea bag manufacture. Fast-infusing, strong colour." },
+  { code: "PD", name: "Pekoe Dust", img: "ctc-pd.jpg", desc: "Fine particles — the grade of choice for single-serve sachets and vending." },
+  { code: "D1", name: "Dust 1", img: "ctc-d1.jpg", desc: "The smallest grade. Maximum surface area — colour and strength in seconds." },
+  { code: "DUST", name: "Dust", img: "ctc-dust.jpg", desc: "Dust tea is the essence of convenience and strength, made from the tiniest bits of broken leaves, almost powdery in texture." },
+  { code: "BMF", name: "Broken Mixed Fannings", img: "ctc-bmf.jpg", desc: "BMF is a highly fibrous tea grade, with minimal traces of black tea, making it a unique choice in the world of teas." },
+  { code: "BP", name: "Broken Pekoe", img: "ctc-bp.jpg", desc: "Almost similar to BP1 grade but varies in size. Made up of black, bold, round, granular particles that are larger than BP1." },
+  { code: "D2", name: "Dust 2", img: "ctc-d2.jpg", desc: "Consists of small fine to very fine tea particles that tends to powdery to the touch." },
+  { code: "FNGS", name: "Fannings", img: "ctc-fngs.jpg", desc: "Usually consists of small particles of tea dust and tiny leaf fragments making it to have a coarse texture." },
+];
+
+const orthodoxGrades = [
+  { code: "OP", name: "Orange Pekoe", img: "orthodox-op.jpg", desc: "Long, wiry whole leaf with a delicate, aromatic cup. The connoisseur's choice." },
+  { code: "BOP", name: "Broken Orange Pekoe", img: "orthodox-bop.jpg", desc: "Orthodox-broken leaf with a fuller body than OP." },
+  { code: "FBOP", name: "Flowery Broken Orange Pekoe", img: "orthodox-fbop.jpg", desc: "Tip-laden orthodox leaf with a refined, almost floral cup." },
+  { code: "P / PEK", name: "Pekoe", img: "orthodox-pekoe.jpg", desc: "A fine grade of tea made up of young tender leaves and buds. Its appearance is similar to black peppercorn as its leaves are shorter, twisted/curly and ball-shaped. Gives a light golden reddish liquor with an invigorating delicate taste that’s quite brisk. Demanded more for its attractive appearance than for the cup quality." },
+  { code: "OPA", name: "ORANGE PEKOE A", img: "orthodox-opa.jpg", desc: "Consists of large, bold and slightly twisted leaves. Leaves are larger compared to OP and OP1. Light/ fairly bright golden reddish liquor with a delicate lighter/mild taste." },
+  { code: "FOP", name: "Flowery Orange Pekoe", img: "orthodox-fop.jpg", desc: "This is a high-quality grade of orthodox tea with an attractive leaf appearance characterized by long, semi-wiry leaves with a few visible tips. With every sip, expect to enjoy a nuanced flavour profile that is delicate and floral in character. Slightly darker liquor compared to OPA that is briskier and bright. Liked more for its leaf appearance than liquor." },
+  { code: "OP1", name: "Orange Pekoe 1", img: "orthodox-op1.jpg", desc: "Orange Pekoe 1, or OP1, is a distinguished tea grade known for its long, slightly wiry, and twisted leavesThis grade of tea usually consists of long, slender, slightly wiry/ twisted leaves and buds. It has a full-bodied profile with a thick robust character. It has subtle fruity undertones. Take a moment to take a deep breath and enjoy its beautiful aroma followed by a sip to enjoy its unique taste. A reason which makes it favourable among tea enthusiasts. The tea once brewed gives a coppery liquor with reddish highlights that’s light in tone." },
+  { code: "FP", name: "Flowery Pekoe", img: "orthodox-fp.jpg", desc: "Mostly made up of young tea leaves and a higher proportion of buds thus giving it a flowery aroma and delicate flavour. The buds give the tea a more nuanced and aromatic profile. Neater and even than the pekoe, it is curly and free of stalk and flaky leaves, commands a higher price due to its brighter and cleaner liquors." },
+  { code: "FBOPF", name: "Flowery Broken Orange Pekoe Fannings", img: "orthodox-fbopf.jpg", desc: "Consists of small, twisted, fairly blacker leaf with a significant number of golden tips from the tea buds. Be sure to sip on a well-rounded cup since its brew has a rich typical aromatic scent with a light golden-reddish colour." },
+  { code: "FBOPFSP", name: "Flowery Broken Orange Pekoe Fannings Special", img: "orthodox-fbopfsp.jpg", desc: "Consists of small, twisted, fairly blacker leaf with a significant number of golden tips from the tea buds. Be sure to sip on a well-rounded cup since its brew has a rich typical aromatic scent with a light golden-reddish colour." },
+  { code: "STGFOP", name: "Special Tippy Golden Flowery Orange Pekoe", img: "orthodox-stgfop.jpg", desc: "The dry leaf is made up of abundant tips and delicate buds that contribute to its aromatic profile. Expect a rich red liquor with a distinct “malty” note. Its taste would be a balanced combination of briskness, sweetness with fruity undertones expected at times. Be sure to enjoy a satisfying mouthfeel considering it has medium to full body. Considered a superior tea and suitable to robust cup tea lovers." },
+  { code: "GBOP", name: "Golden Broken Orange Pekoe", img: "orthodox-gbop.jpg", desc: "A smaller sized tea grade with high quality broken tea leaves. The leaves are uniform and heavy with few tips. Expect a rich, malty aroma with hints of sweetness. Its bold yet balanced and offers a robust, full-bodied flavour." },
+  { code: "GFBOP1", name: "Golden Flowery Broken Orange Pekoe 1", img: "orthodox-gfbop1.jpg", desc: "A broken leaf grade similar to GBOP but more special. Has a robust flavour but tends to be more aromatic and floral. Suitable for stand-alone sipping or with a touch of milk." },
+  { code: "GOF", name: "Golden Orange Fannings", img: "orthodox-gof.jpg", desc: "A lower grade fannings tea consisting of small leaf particles. Majorly used as a filler in tea bag blends giving them that extra flavour boost. Has a full-bodied liquor with little astringency, and strong cup." },
+  { code: "TGFOP", name: "Tippy Golden Flowery Orange Pekoe", img: "orthodox-tgfop.jpg", desc: "Contains a higher proportion of tips influencing a tea rich in flavour and aroma. Bold, brisk flavour and bright liquor. Savour those golden tips when enjoying a cup of TGFOP." },
+  { code: "TBOP", name: "Tippy Broken Orange Pekoe", img: "orthodox-tbop.jpg", desc: "A broken leaf grade with an abundance of flowering buds. Quite a flavourful and aromatic tea grade owing to the abundance of buds." },
+  { code: "FOF", name: "Flowery Orange Fannings", img: "orthodox-fof.jpg", desc: "This tea grade consists of smaller leaf particles and fanning’s that are finely broken and smaller in size compared to whole leaf teas. Be sure to expect a strong, brisk flavour with a robust and sometimes slightly astringent taste. Ideal for strong tea cup lovers.A rapid infuser, releasing its flavour more quickly. It often has a rich and full-bodied aroma though lacking in the subtle notes found in higher grade teas." },
+];
+
+const packaging = [
+  { size: "Bulk — 50 kg", use: "Export standard. Polypropylene inner, sisal/hessian outer." },
+  { size: "Bulk — 25 kg", use: "Re-pack buyers and small blenders. Polypropylene inner, kraft outer." },
+  { size: "Palletised — 1,000 kg", use: "Shrink-wrapped, fumigated pallets for full-container shipments." },
+  { size: "Private Label", use: "Branded packaging for distributors under their own retail brand." },
+  { size: "Tea Bag Cut", use: "Re-cleaned and sized for tea bag machinery. Available from 2mm upwards." },
+];
+
+const estates = [
+  "Mara",
+  "Sangalo",
+  "Emrok",
+  "Choimim",
+  "Manaret",
+  "Tagabi",
+];
+
+const imgBase = "/images/grades/";
+---
+<Base
+  title="Our Tea — CTC Black, Orthodox & Specialty"
+  description="CTC black tea, orthodox whole-leaf and specialty grades from the Kenyan highlands. Standard BP1, PF1, PD, D1, FBOP plus orthodox OP, Pekoe and FBOP."
+>
+  <Header />
+
+  <section class="relative bg-[#0d3329] text-[#f4ecdc] py-24 md:py-32 overflow-hidden">
+  <img
+    src="/images/hero-tea.jpg"
+    alt=""
+    aria-hidden="true"
+    class="absolute inset-0 w-full h-full object-cover"
+    onerror="this.style.display='none'"
+  />
+  <div class="absolute inset-0 bg-gradient-to-br from-[#0d3329]/90 via-[#0d3329]/70 to-[#0d3329]/40"></div>
+  <div class="relative max-w-5xl mx-auto px-5 lg:px-8">
+    <p class="text-[#b9a48a] uppercase tracking-[0.3em] text-xs mb-6">Our Tea</p>
+    <h1 class="text-5xl md:text-7xl leading-[0.95]" style="font-family:'DM Serif Display',serif;font-weight:400;">
+      Two methods.<br/>
+      <span class="text-[#b9a48a]">Twenty six grades.</span><br/>
+      One origin.
+    </h1>
+  </div>
+</section>
+
+  <!-- CTC -->
+  <section class="bg-[#f4ecdc] py-24">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-end mb-12">
+        <div>
+          <p class="text-[#0d3329] uppercase tracking-[0.25em] text-xs mb-3">Processing Method 01</p>
+          <h2 class="text-4xl md:text-5xl text-[#0d3329] leading-tight" style="font-family:'DM Serif Display',serif;font-weight:400;">CTC Black Tea</h2>
+        </div>
+        <p class="text-[#3d3d3d] leading-relaxed">
+          Crush, Tear, Curl — the method that built the Kenyan tea industry. The leaf is macerated, fermented and dried into small hard granules. CTC Black, for brewing strength, colour and consistency at scale.
+        </p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-[#0d3329]/10 border border-[#0d3329]/10">
+        {ctcGrades.map((g) => (
+          <div class="bg-[#f4ecdc]">
+            <div class="relative aspect-[4/3] overflow-hidden bg-[#e6dcc6]">
+              <span class="absolute inset-0 flex items-center justify-center text-[#b9a48a] text-5xl" style="font-family:'DM Serif Display',serif;" aria-hidden="true">{g.code}</span>
+              <img
+                src={`${imgBase}${g.img}`}
+                alt={`${g.name} (${g.code}) dry leaf`}
+                width="800"
+                height="600"
+                loading="lazy"
+                decoding="async"
+                class="absolute inset-0 w-full h-full object-cover"
+                onerror="this.style.display='none'"
+              />
+            </div>
+            <div class="p-7">
+              <p class="text-[#b9a48a] text-3xl mb-3" style="font-family:'DM Serif Display',serif;">{g.code}</p>
+              <h3 class="text-[#0d3329] text-lg font-semibold mb-2">{g.name}</h3>
+              <p class="text-sm text-[#3d3d3d] leading-relaxed">{g.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ORTHODOX -->
+  <section class="bg-white py-24">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-end mb-12">
+        <div>
+          <p class="text-[#0d3329] uppercase tracking-[0.25em] text-xs mb-3">Processing Method 02</p>
+          <h2 class="text-4xl md:text-5xl text-[#0d3329] leading-tight" style="font-family:'DM Serif Display',serif;font-weight:400;">Orthodox Tea</h2>
+        </div>
+        <p class="text-[#3d3d3d] leading-relaxed">
+          Whole-leaf, hand-rolled and tip-preserved. Orthodox Kenyan teas are increasingly sought by speciality blenders and premium tea bag packers who want flavour, not just colour.
+        </p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-[#0d3329]/10 border border-[#0d3329]/10">
+        {orthodoxGrades.map((g) => (
+          <div class="bg-white">
+            <div class="relative aspect-[4/3] overflow-hidden bg-[#f1ead9]">
+              <span class="absolute inset-0 flex items-center justify-center px-4 text-center text-[#b9a48a] text-3xl" style="font-family:'DM Serif Display',serif;" aria-hidden="true">{g.code}</span>
+              <img
+                src={`${imgBase}${g.img}`}
+                alt={`${g.name} (${g.code}) dry leaf`}
+                width="800"
+                height="600"
+                loading="lazy"
+                decoding="async"
+                class="absolute inset-0 w-full h-full object-cover"
+                onerror="this.style.display='none'"
+              />
+            </div>
+            <div class="p-7">
+              <p class="text-[#b9a48a] text-xs uppercase tracking-widest mb-2">Grade</p>
+              <h3 class="text-[#0d3329] text-lg font-semibold mb-2">{g.code}</h3>
+              <p class="text-sm text-[#3d3d3d] mb-3">{g.name}</p>
+              <p class="text-sm text-[#3d3d3d] leading-relaxed">{g.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#0d3329] text-[#f4ecdc] py-24">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 grid lg:grid-cols-2 gap-16">
+      <div>
+        <p class="text-[#b9a48a] uppercase tracking-[0.25em] text-xs mb-4">Origin & Estates</p>
+        <h2 class="text-4xl md:text-5xl leading-tight mb-6" style="font-family:'DM Serif Display',serif;font-weight:400;">
+          Single-origin lots from named estates
+        </h2>
+        <p class="text-[#f4ecdc]/80 leading-relaxed">
+          Beyond the standard auction grades, we maintain direct supply relationships with estates across Kenya's growing regions. Single-estate lots can be reserved, blended to your spec, or packed under your label.
+        </p>
+        <a href="/contact" class="mt-8 inline-flex items-center gap-2 px-6 py-3 bg-[#b9a48a] text-[#0d3329] font-semibold hover:bg-[#d4b896]">
+          Request single-estate availability →
+        </a>
+      </div>
+      <div class="grid grid-cols-2 gap-px bg-[#b9a48a]/20">
+        {estates.map((e) => (
+          <div class="bg-[#0d3329] p-6">
+            <p class="text-[#f4ecdc]">{e}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#f4ecdc] py-24">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <p class="text-[#0d3329] uppercase tracking-[0.25em] text-xs mb-4">Packaging</p>
+      <h2 class="text-4xl md:text-5xl text-[#0d3329] leading-tight mb-12" style="font-family:'DM Serif Display',serif;font-weight:400;">
+        Bulk, palletised, private label
+      </h2>
+      <div class="bg-white border border-[#0d3329]/10">
+        <table class="w-full text-left">
+          <thead class="border-b border-[#0d3329]/15">
+            <tr class="text-[#0d3329] text-sm uppercase tracking-wider">
+              <th class="p-5 font-semibold">Pack Size</th>
+              <th class="p-5 font-semibold">Typical Use</th>
+            </tr>
+          </thead>
+          <tbody>
+            {packaging.map((p) => (
+              <tr class="border-b border-[#0d3329]/8 last:border-0">
+                <td class="p-5 text-[#0d3329] font-semibold" style="font-family:'DM Serif Display',serif;">{p.size}</td>
+                <td class="p-5 text-[#3d3d3d]">{p.use}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white py-20 text-center">
+    <div class="max-w-3xl mx-auto px-5">
+      <h2 class="text-3xl md:text-4xl text-[#0d3329] leading-tight" style="font-family:'DM Serif Display',serif;font-weight:400;">
+        Need a custom blend or a specific grade not listed here?
+      </h2>
+      <p class="mt-4 text-[#3d3d3d]">Send us your specification. We will quote against current Mombasa auction prices.</p>
+      <a href="/contact" class="mt-8 inline-flex items-center gap-2 px-7 py-4 bg-[#0d3329] text-[#f4ecdc] font-semibold hover:bg-[#1a4a3d]">
+        Request a Quote
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <Footer />
+</Base>

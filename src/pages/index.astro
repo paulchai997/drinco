@@ -1,0 +1,261 @@
+---
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import KleapForm from "@/components/KleapForm";
+
+const estates = [
+  { name: "Manaret", region: "Bomet", alt: "1,950 m" },
+  { name: "Sangalo", region: "Kapsabet", alt: "1,989 m" },
+  { name: "Emrok", region: "Kitale", alt: "1,893 m" },
+  { name: "Mara", region: "Narok", alt: "1,787 m" },
+];
+
+const markets = [
+  { region: "Africa", cities: "Egypt · Sudan" },
+  { region: "Middle East", cities: "UAE · Saudi Arabia · Iran · Pakistan · Afghanistan · Oman · Iraq" },
+  { region: "Central Asia", cities: "Kazakhstan · Uzbekistan" },
+];
+
+const featured = [
+  { name: "Broken Pekoe 1", grade: "BP1", tag: "CTC Black Tea", desc: "Bright, full-bodied liquour with rich colour — the backbone of every breakfast blend." },
+  { name: "Pekoe Fannings 1", grade: "PF1", tag: "CTC Black Tea", desc: "Smaller broken leaf for tea bag manufacture. Fast-infusing, strong colour."},
+  { name: "Orange Pekoe", grade: "OP", tag: "Orthodox Tea", desc: "Long, wiry whole leaf with a delicate, aromatic cup. The connoisseur's choice." },
+  { name: "Orange Pekoe 1", grade: "OP1", tag: "Orthodox Tea", desc: "Known for its long, slightly wiry, and twisted leaves.." },
+];
+
+const process = [
+  "Tea Auction", "Sourcing", "Quality Control", "Blending", "Documentation", "Shipping", "Destination",
+];
+
+const compliance = [
+  "Tea Board of Kenya Licensed Exporter",
+  "East Africa Tea Trade Association (EATTA)",
+  "KNCCI Certified",
+  "Kenya Plant Health Inspectorate (KEPHIS)",
+];
+---
+<Base
+  title="Drinco International — Kenyan Tea, Global Reach"
+  description="Licensed Kenyan tea exporter based in Mombasa. CTC black tea, orthodox and specialty grades shipped to 9+ markets across Africa, the Middle East and Central Asia."
+  schema={[
+    {
+      "@type": "Organization",
+      name: "Drinco International Limited",
+      url: "https://drincointernational.com",
+      logo: "/images/hero-tea-estates.jpg",
+      email: "trading@drincointernational.com",
+      telephone: "+254-70-165-7527",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Olemonana House 1st Floor, Moi Avenue",
+        addressLocality: "Mombasa",
+        addressCountry: "KE",
+      },
+    },
+    {
+      "@type": "LocalBusiness",
+      name: "Drinco International Limited",
+      image: "/images/mombasa-port.jpg",
+      telephone: "+254-70-165-7527",
+      email: "trading@drincointernational.com",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Olemonana House 1st Floor, Moi Avenue",
+        addressLocality: "Mombasa",
+        addressRegion: "Mombasa County",
+        postalCode: "356-80100",
+        addressCountry: "KE",
+      },
+      geo: { "@type": "GeoCoordinates", latitude: -4.0435, longitude: 39.6682 },
+      openingHours: "Mo–Fr 08:00–17:00",
+    },
+  ]}
+>
+  <Header />
+
+  <!-- HERO -->
+  <section class="relative min-h-[78vh] flex items-center overflow-hidden">
+    <img src="/images/hero-tea-estates.jpg" alt="Tea estates in the Kenyan highlands" class="absolute inset-0 w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-gradient-to-br from-[#0d3329]/90 via-[#0d3329]/70 to-[#0d3329]/40"></div>
+    <div class="relative max-w-7xl mx-auto px-5 lg:px-8 py-24 text-[#f4ecdc]">
+      <p class="text-[#b9a48a] uppercase tracking-[0.3em] text-xs mb-6">Licensed Exporter since 2014</p>
+      <h1 class="text-5xl md:text-7xl lg:text-8xl leading-[0.95] max-w-4xl" style="font-family:'DM Serif Display',serif;font-weight:400;">
+        Kenyan Tea.<br/><span class="text-[#b9a48a]">Global Reach.</span>
+      </h1>
+      <p class="mt-8 text-lg md:text-xl max-w-2xl text-[#f4ecdc]/90 leading-relaxed">
+        From the high-mountain estates of the Rift to the auction of Mombasa, we source, blend and ship Kenyan tea to buyers across three continents.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-4">
+        <a href="/our-tea" class="inline-flex items-center gap-2 px-7 py-4 bg-[#b9a48a] text-[#0d3329] font-semibold hover:bg-[#d4b896] transition-colors">
+          Explore Our Teas
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="/contact" class="inline-flex items-center gap-2 px-7 py-4 border border-[#f4ecdc]/40 text-[#f4ecdc] hover:bg-[#f4ecdc]/10 transition-colors">
+          Request a Sample
+        </a>
+      </div>
+    </div>
+    <div class="absolute bottom-8 right-8 hidden md:flex items-center gap-3 text-[#f4ecdc]/80 text-xs uppercase tracking-[0.25em]">
+      <span class="w-8 h-px bg-[#b9a48a]"></span>
+      Scroll
+    </div>
+  </section>
+
+  <!-- ESTATES / SOURCING -->
+  <section class="bg-[#f4ecdc] py-24">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 grid lg:grid-cols-2 gap-16 items-center">
+      <div>
+        <p class="text-[#0d3329] uppercase tracking-[0.25em] text-xs mb-4">Sourcing</p>
+        <h2 class="text-4xl md:text-5xl text-[#0d3329] leading-tight" style="font-family:'DM Serif Display',serif;font-weight:400;">
+          From the highlands where tea was born to flourish
+        </h2>
+        <p class="mt-6 text-[#3d3d3d] leading-relaxed">
+          Volcanic soils, equatorial sun and altitude — the highlands of Kenya produce some of the world's most sought-after black tea. We work directly with estate owners across four growing regions.
+        </p>
+        <a href="/about" class="mt-8 inline-flex items-center gap-2 text-[#0d3329] font-semibold border-b border-[#0d3329] pb-1 hover:gap-3 transition-all">
+          Read our story
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        {estates.map((e) => (
+          <div class="bg-white p-6 border border-[#d9cfb1]">
+            <p class="text-xs uppercase tracking-widest text-[#b9a48a] mb-2">{e.region}</p>
+            <p class="text-[#0d3329] text-lg font-semibold" style="font-family:'DM Serif Display',serif;">{e.name}</p>
+            <p class="text-sm text-[#3d3d3d] mt-2">{e.alt}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPORT DESTINATIONS -->
+  <section class="bg-[#0d3329] text-[#f4ecdc] py-24">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <div class="max-w-3xl mb-14">
+        <p class="text-[#b9a48a] uppercase tracking-[0.25em] text-xs mb-4">Global Markets</p>
+        <h2 class="text-4xl md:text-5xl leading-tight" style="font-family:'DM Serif Display',serif;font-weight:400;">
+          Shipping to 10+ countries across three regions
+        </h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-[#b9a48a]/20">
+        {markets.map((m) => (
+          <div class="bg-[#0d3329] p-8">
+            <p class="text-[#b9a48a] text-xs uppercase tracking-widest mb-3">{m.region}</p>
+            <p class="text-lg leading-relaxed text-[#f4ecdc]">{m.cities}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- QUALITY & COMPLIANCE -->
+  <section class="bg-[#f4ecdc] py-24">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 grid lg:grid-cols-2 gap-16 items-center">
+      <div>
+        <p class="text-[#0d3329] uppercase tracking-[0.25em] text-xs mb-4">Quality & Compliance</p>
+        <h2 class="text-4xl md:text-5xl text-[#0d3329] leading-tight" style="font-family:'DM Serif Display',serif;font-weight:400;">
+          Every consignment certified, every shipment traceable
+        </h2>
+        <p class="mt-6 text-[#3d3d3d] leading-relaxed">
+          Tea Board of Kenya licensed, EATTA member, KEPHIS and KNCCI certified — quality is built into every step from the auction, warehouse to the customer's container.
+        </p>
+      </div>
+      <ul class="space-y-3">
+        {compliance.map((c) => (
+          <li class="flex items-start gap-3 pb-3 border-b border-[#0d3329]/15">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0d3329" stroke-width="2.5" stroke-linecap="round" class="mt-0.5 shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+            <span class="text-[#0d3329] font-medium">{c}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- FEATURED TEAS -->
+  <section class="bg-white py-24">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-14 gap-4">
+        <div>
+          <p class="text-[#0d3329] uppercase tracking-[0.25em] text-xs mb-4">Featured Teas</p>
+          <h2 class="text-4xl md:text-5xl text-[#0d3329] leading-tight" style="font-family:'DM Serif Display',serif;font-weight:400;">
+            A grade for every market
+          </h2>
+        </div>
+        <a href="/our-tea" class="text-[#0d3329] font-semibold border-b border-[#0d3329] pb-1">View all grades →</a>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[#0d3329]/10">
+        {featured.map((t) => (
+          <article class="bg-white p-7 group hover:bg-[#0d3329] transition-colors duration-300">
+            <p class="text-[#b9a48a] text-xs uppercase tracking-widest mb-3 group-hover:text-[#d4b896]">{t.tag}</p>
+            <h3 class="text-xl text-[#0d3329] group-hover:text-[#f4ecdc] mb-2" style="font-family:'DM Serif Display',serif;font-weight:400;">{t.name}</h3>
+            <p class="text-sm text-[#3d3d3d] group-hover:text-[#f4ecdc]/80 mb-4">{t.grade}</p>
+            <p class="text-sm text-[#3d3d3d] group-hover:text-[#f4ecdc]/80 leading-relaxed">{t.desc}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS STRIP -->
+  <section class="bg-[#0d3329] py-20">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <p class="text-[#b9a48a] uppercase tracking-[0.25em] text-xs mb-8">From Auction to Destination</p>
+      <div class="grid grid-cols-2 md:grid-cols-7 gap-4 md:gap-2">
+        {process.map((step, i) => (
+          <div class="relative">
+            <p class="text-[#b9a48a] text-xs mb-2">0{i + 1}</p>
+            <p class="text-[#f4ecdc] text-sm md:text-base">{step}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT CTA + FORM -->
+  <section class="bg-[#f4ecdc] py-24">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 grid lg:grid-cols-2 gap-14">
+      <div>
+          <p class="text-[#0d3329] uppercase tracking-[0.25em] text-xs mb-4">Start a Conversation</p>
+          <h2 class="text-4xl md:text-5xl text-[#0d3329] leading-tight" style="font-family:'DM Serif Display',serif;font-weight:400;">
+            Tell us what you need. We'll send a quote within 24 hours.
+          </h2>
+          <div class="mt-10 space-y-4 text-[#3d3d3d]">
+            <p class="flex items-start gap-3">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0d3329" stroke-width="2" class="mt-1"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Olemonana House 1st Floor, Moi Avenue, Mombasa, Kenya
+            </p>
+            <p class="flex items-start gap-3">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0d3329" stroke-width="2" class="mt-1"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <a href="mailto:trading@drincointernational.com" class="hover:text-[#0d3329]">trading@drincointernational.com</a>
+            </p>
+            <p class="flex items-start gap-3">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0d3329" stroke-width="2" class="mt-1"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <a href="tel:+254701657527" class="hover:text-[#0d3329]">+254 70 165 7527</a>
+            </p>
+          </div>
+        </div>
+        <div>
+          <KleapForm
+            client:load
+            formId="inquiry"
+            title="Send an Inquiry"
+            fields={[
+              { name: "name", label: "Full Name", type: "text", required: true },
+              { name: "company", label: "Company", type: "text" },
+              { name: "email", label: "Email", type: "email", required: true },
+              { name: "phone", label: "Phone / WhatsApp", type: "tel" },
+              { name: "country", label: "Destination Country", type: "text" },
+              { name: "tea_grade", label: "Tea Grade of Interest", type: "text", placeholder: "e.g. CTC BP1, Orthodox OP" },
+              { name: "quantity", label: "Estimated Quantity (kg)", type: "text" },
+              { name: "message", label: "Tell us more", type: "textarea", required: true },
+            ]}
+            submitText="Send Inquiry"
+          />
+        </div>
+      </div>
+  </section>
+
+  <Footer />
+</Base>

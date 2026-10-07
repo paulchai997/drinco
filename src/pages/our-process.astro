@@ -1,0 +1,125 @@
+---
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const steps = [
+  {
+    n: "01",
+    title: "Tea Auction",
+    desc: "Every Monday and Tuesday at the Mombasa Tea Auction, we assess lots, follows the market and secures the grades our clients need. We buy on behalf of named orders — never speculative.",
+    detail: "Tea Trade Centre, Nyerere Avenue",
+  },
+  {
+    n: "02",
+    title: "Sourcing",
+    desc: "For single-estate and direct-supply clients, we source outside the auction floor — visiting estates, sampling leaf and negotiating annual contracts.",
+    detail: "Manaret · Mara · Sangalo · Choimim",
+  },
+  {
+    n: "03",
+    title: "Quality Control",
+    desc: "Every lot is tasted in our Mombasa laboratory. Off-flavours, stalk, fibre and moisture are tested against a documented specification. Lots that fail are returned to the warehouse.",
+    detail: "Mombasa Lab · HACCP controlled",
+  },
+  {
+    n: "04",
+    title: "Blending",
+    desc: "For clients requesting a consistent house blend, we build recipes that survive container transit — flavour lock, predictable colour, repeatable cup profile.",
+    detail: "HACCP-certified blending lines",
+  },
+  {
+    n: "05",
+    title: "Documentation",
+    desc: "Phytosanitary certificates, Tea Board of Kenya export permits, KEPHIS inspection, KRA customs entries and Bills of Lading. We handle the paperwork so you don't.",
+    detail: "Full export dossier per shipment",
+  },
+  {
+    n: "06",
+    title: "Shipping",
+    desc: "From our bonded warehouse just outside the Mombasa port complex, we load FCL containers — dry or reefer, 20ft or 40ft. Vessel choice optimised for your destination and ETA window.",
+    detail: "Mombasa Port · Direct loading",
+  },
+  {
+    n: "07",
+    title: "Destination",
+    desc: "CIF, CFR or FOB — your terms. We hand off to your receiving team with full documentation, pre-arrival notice and a real human contact on the Mombasa end until the container is signed for.",
+    detail: "10+ destination ports",
+  },
+];
+---
+<Base
+  title="Our Process — From Mombasa Auction to Destination Port"
+  description="Seven documented steps from the Mombasa Tea Auction to your warehouse. Tea auction, sourcing, QC, blending, documentation, shipping, destination handover."
+>
+  <Header />
+
+  <section class="relative bg-[#0d3329] text-[#f4ecdc] py-24 md:py-32 overflow-hidden">
+  <img
+    src="/images/hero-process.jpeg"
+    alt=""
+    aria-hidden="true"
+    class="absolute inset-0 w-full h-full object-cover"
+    onerror="this.style.display='none'"
+  />
+  <div class="absolute inset-0 bg-gradient-to-br from-[#0d3329]/90 via-[#0d3329]/70 to-[#0d3329]/40"></div>
+  <div class="relative max-w-5xl mx-auto px-5 lg:px-8">
+    <p class="text-[#b9a48a] uppercase tracking-[0.3em] text-xs mb-6">Our Process</p>
+    <h1 class="text-5xl md:text-7xl leading-[0.95]" style="font-family:'DM Serif Display',serif;font-weight:400;">
+      Seven steps from<br/>
+      <span class="text-[#b9a48a]">auction to destination.</span>
+    </h1>
+    <p class="mt-8 text-lg text-[#f4ecdc]/85 max-w-3xl leading-relaxed">
+      Every consignment follows the same documented path. No shortcuts, no middlemen. You know who bought it, who tasted it, who packed it and who shipped it.
+    </p>
+  </div>
+</section>
+
+  <section class="bg-[#f4ecdc] py-12">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <div class="grid grid-cols-7">
+        {steps.map((s, i) => (
+          <div class={`p-4 text-[#0d3329] text-xs uppercase tracking-widest text-center ${i < steps.length - 1 ? "border-r border-[#0d3329]/20" : ""}`}>
+            {s.n}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white">
+    {steps.map((s, i) => (
+      <div class={`${i % 2 === 0 ? "bg-white" : "bg-[#f4ecdc]"} py-20`}>
+        <div class="max-w-7xl mx-auto px-5 lg:px-8 grid lg:grid-cols-12 gap-10">
+          <div class="lg:col-span-2">
+            <p class="text-[#b9a48a] text-6xl" style="font-family:'DM Serif Display',serif;">{s.n}</p>
+          </div>
+          <div class="lg:col-span-7">
+            <h2 class="text-3xl md:text-4xl text-[#0d3329] leading-tight mb-5" style="font-family:'DM Serif Display',serif;font-weight:400;">{s.title}</h2>
+            <p class="text-[#3d3d3d] leading-relaxed text-lg">{s.desc}</p>
+          </div>
+          <div class="lg:col-span-3 lg:border-l lg:border-[#0d3329]/15 lg:pl-8 flex items-center">
+            <p class="text-[#0d3329] text-sm uppercase tracking-widest">{s.detail}</p>
+          </div>
+        </div>
+      </div>
+    ))}
+  </section>
+
+  <section class="bg-[#0d3329] text-[#f4ecdc] py-24 text-center">
+    <div class="max-w-3xl mx-auto px-5">
+      <h2 class="text-4xl md:text-5xl leading-tight" style="font-family:'DM Serif Display',serif;font-weight:400;">
+        Ready to order?
+      </h2>
+      <p class="mt-5 text-[#f4ecdc]/85">
+        Send your grade specification and destination port. We will reply with availability, lead time and a CIF or FOB quote.
+      </p>
+      <a href="/contact" class="mt-8 inline-flex items-center gap-2 px-7 py-4 bg-[#b9a48a] text-[#0d3329] font-semibold hover:bg-[#d4b896]">
+        Start an Inquiry
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <Footer />
+</Base>

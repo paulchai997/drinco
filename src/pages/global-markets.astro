@@ -1,0 +1,116 @@
+---
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const regions = [
+  {
+    name: "Africa",
+    intro: "Long-term supply to family-owned blenders and distributors.",
+    countries: ["Egypt", "Sudan"],
+    grades: "CTC BP1 · Dust grades",
+    shipping: "Direct container · 12–18 days · Port Said, Alexandria, Port Sudan",
+  },
+  {
+    name: "Middle East",
+    intro: "The largest destination for our tea — supply contracts with packers, blenders and tea bag manufacturers.",
+    countries: ["United Arab Emirates", "Saudi Arabia", "Iran", "Pakistan", "Afghanistan", "Iraq", "Oman"],
+    grades: "CTC Black Tea · Orthodox tea",
+    shipping: "Direct container · 8–14 days · Jebel Ali, Bandar Abbas, Karachi, Salalah",
+  },
+  {
+    name: "Central Asia",
+    intro: "A growing region for us with distributors in three countries.",
+    countries: ["Kazakhstan", "Uzbekistan", "Oman"],
+    grades: "Orthodox OR",
+    shipping: "Reefer & dry container via Bandar Abbas or Karachi · 22–32 days",
+  },
+];
+---
+<Base
+  title="Global Markets — Tea Exporter to Africa, Middle East & Central Asia"
+  description="Kenyan tea exports to 10+ countries. Direct shipping to Egypt, Sudan, UAE, Saudi Arabia, Pakistan, Kazakhstan and more."
+>
+  <Header />
+
+  <section class="relative bg-[#0d3329] text-[#f4ecdc] py-24 md:py-32 overflow-hidden">
+  <img
+    src="/images/hero-markets.jpg"
+    alt=""
+    aria-hidden="true"
+    class="absolute inset-0 w-full h-full object-cover"
+    onerror="this.style.display='none'"
+  />
+  <div class="absolute inset-0 bg-gradient-to-br from-[#0d3329]/90 via-[#0d3329]/70 to-[#0d3329]/40"></div>
+  <div class="relative max-w-5xl mx-auto px-5 lg:px-8">
+    <p class="text-[#b9a48a] uppercase tracking-[0.3em] text-xs mb-6">Global Markets</p>
+    <h1 class="text-5xl md:text-7xl leading-[0.95]" style="font-family:'DM Serif Display',serif;font-weight:400;">
+      Shipping to <span class="text-[#b9a48a]">10+ countries</span><br/>
+      across three regions.
+    </h1>
+  </div>
+</section>
+
+  <section class="bg-[#f4ecdc] py-16">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[#0d3329]/10 border border-[#0d3329]/10">
+      {[
+        { n: "10+", l: "Destination countries" },
+        { n: "3", l: "Continents served" },
+        { n: "12,000 t", l: "Annual export capacity" },
+        { n: "8–32 d", l: "Transit time to port" },
+      ].map((s) => (
+        <div class="bg-[#f4ecdc] p-8 text-center">
+          <p class="text-[#0d3329] text-4xl" style="font-family:'DM Serif Display',serif;">{s.n}</p>
+          <p class="text-sm text-[#3d3d3d] mt-2 uppercase tracking-widest">{s.l}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  {regions.map((r, i) => (
+    <section class={`${i % 2 === 0 ? "bg-white" : "bg-[#f4ecdc]"} py-20`}>
+      <div class="max-w-7xl mx-auto px-5 lg:px-8 grid lg:grid-cols-12 gap-10">
+        <div class="lg:col-span-4">
+          <p class="text-[#b9a48a] uppercase tracking-[0.25em] text-xs mb-3">Region 0{i + 1}</p>
+          <h2 class="text-4xl md:text-5xl text-[#0d3329] leading-tight" style="font-family:'DM Serif Display',serif;font-weight:400;">{r.name}</h2>
+          <p class="mt-5 text-[#3d3d3d] leading-relaxed">{r.intro}</p>
+        </div>
+        <div class="lg:col-span-8 grid sm:grid-cols-2 gap-px bg-[#0d3329]/10 border border-[#0d3329]/10">
+          <div class="bg-inherit p-6">
+            <p class="text-[#0d3329] text-xs uppercase tracking-widest mb-3">Markets served</p>
+            <ul class="space-y-1.5 text-[#3d3d3d]">
+              {r.countries.map((c) => (
+                <li class="flex items-center gap-2">
+                  <span class="w-1 h-1 rounded-full bg-[#b9a48a]"></span>
+                  {c}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="bg-inherit p-6">
+            <p class="text-[#0d3329] text-xs uppercase tracking-widest mb-3">Grades</p>
+            <p class="text-[#3d3d3d]">{r.grades}</p>
+            <p class="text-[#0d3329] text-xs uppercase tracking-widest mt-6 mb-3">Shipping</p>
+            <p class="text-[#3d3d3d]">{r.shipping}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <section class="bg-[#0d3329] text-[#f4ecdc] py-24">
+    <div class="max-w-4xl mx-auto px-5 lg:px-8 text-center">
+      <h2 class="text-4xl md:text-5xl leading-tight" style="font-family:'DM Serif Display',serif;font-weight:400;">
+        Looking for a market not shown here?
+      </h2>
+      <p class="mt-6 text-[#f4ecdc]/80">
+        We work through approved agents in additional countries. Tell us where you are and we will tell you what is possible.
+      </p>
+      <a href="/contact" class="mt-8 inline-flex items-center gap-2 px-7 py-4 bg-[#b9a48a] text-[#0d3329] font-semibold hover:bg-[#d4b896]">
+        Talk to our team →
+      </a>
+    </div>
+  </section>
+
+  <Footer />
+</Base>
