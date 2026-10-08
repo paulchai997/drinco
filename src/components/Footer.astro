@@ -1,69 +1,178 @@
 ---
+const base = import.meta.env.BASE_URL;
 const year = new Date().getFullYear();
+
+const links = [
+  { href: `${base}about`, label: "About Us" },
+  { href: `${base}our-tea`, label: "Our Tea" },
+  { href: `${base}global-markets`, label: "Global Markets" },
+  { href: `${base}our-process`, label: "Our Process" },
+  { href: `${base}sustainability`, label: "Sustainability" },
+  { href: `${base}insights`, label: "Insights" },
+];
 ---
+
 <footer class="bg-[#0a2620] text-[#d4c9b3] mt-24">
   <div class="max-w-7xl mx-auto px-5 lg:px-8 py-16 grid md:grid-cols-2 xl:grid-cols-[1.5fr_1fr_1.3fr_1.2fr] gap-10">
+
+    <!-- Company -->
     <div>
       <div class="flex items-center gap-3 mb-5">
-  <img
-    src="/images/logo.png"
-    alt="Drinco International Limited logo"
-    height="48"
-    class="h-12 w-auto shrink-0 object-contain drop-shadow-[0_0_8px_rgba(244,236,220,0.35)]"
-  />
-  <div>
-    <p class="whitespace-nowrap text-[#f4ecdc] font-semibold" style="font-family:'DM Serif Display',serif;">Drinco International</p>
-    <p class="text-[10px] uppercase tracking-[0.15em] text-[#b9a48a]">Est. 2014 · Mombasa, Kenya</p>
-  </div>
-</div>
+        <img
+          src={`${base}images/logo.png`}
+          alt="Drinco International Limited logo"
+          height="48"
+          class="h-12 w-auto shrink-0 object-contain drop-shadow-[0_0_8px_rgba(244,236,220,0.35)]"
+        />
+
+        <div>
+          <p
+            class="whitespace-nowrap text-[#f4ecdc] font-semibold"
+            style="font-family:'DM Serif Display',serif;"
+          >
+            Drinco International
+          </p>
+
+          <p class="text-[10px] uppercase tracking-[0.15em] text-[#b9a48a]">
+            Est. 2014 · Mombasa, Kenya
+          </p>
+        </div>
+      </div>
+
       <p class="text-sm leading-relaxed text-[#d4c9b3]/80">
-        Licensed tea exporters connecting the finest Kenyan estates to buyers across Africa, the Middle East and Central Asia.
+        Licensed tea exporters connecting the finest Kenyan estates to buyers
+        across Africa, the Middle East and Central Asia.
       </p>
     </div>
+
+    <!-- Explore -->
     <div>
-      <h4 class="text-[#f4ecdc] font-semibold mb-4 text-sm uppercase tracking-wider">Explore</h4>
+      <h4 class="text-[#f4ecdc] font-semibold mb-4 text-sm uppercase tracking-wider">
+        Explore
+      </h4>
+
       <ul class="space-y-2 text-sm">
-        <li><a href="/about" class="hover:text-[#b9a48a]">About Us</a></li>
-        <li><a href="/our-tea" class="hover:text-[#b9a48a]">Our Tea</a></li>
-        <li><a href="/global-markets" class="hover:text-[#b9a48a]">Global Markets</a></li>
-        <li><a href="/our-process" class="hover:text-[#b9a48a]">Our Process</a></li>
-        <li><a href="/sustainability" class="hover:text-[#b9a48a]">Sustainability</a></li>
-        <li><a href="/insights" class="hover:text-[#b9a48a]">Insights</a></li>
+        {links.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class="hover:text-[#b9a48a] transition-colors"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
       </ul>
     </div>
+
+    <!-- Contact -->
     <div>
-      <h4 class="text-[#f4ecdc] font-semibold mb-4 text-sm uppercase tracking-wider">Contact</h4>
+      <h4 class="text-[#f4ecdc] font-semibold mb-4 text-sm uppercase tracking-wider">
+        Contact
+      </h4>
+
       <ul class="space-y-3 text-sm">
+
+        <!-- Address -->
         <li class="flex items-start gap-2">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b9a48a" stroke-width="2" class="mt-0.5 shrink-0"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span>Olemonana House 1st Floor, Moi Avenue, Mombasa, Kenya</span>
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#b9a48a"
+            stroke-width="2"
+            class="mt-0.5 shrink-0"
+          >
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+
+          <span>
+            Olemonana House 1st Floor, Moi Avenue, Mombasa, Kenya
+          </span>
         </li>
+
+        <!-- Email -->
         <li class="flex items-start gap-3">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b9a48a" stroke-width="2" class="mt-0.5 shrink-0"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          <a href="mailto:trading@drincointernational.com" class="hover:text-[#b9a48a]">trading@drincointernational.com</a>
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#b9a48a"
+            stroke-width="2"
+            class="mt-0.5 shrink-0"
+          >
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+
+          <a
+            href="mailto:trading@drincointernational.com"
+            class="hover:text-[#b9a48a] transition-colors"
+          >
+            trading@drincointernational.com
+          </a>
         </li>
+
+        <!-- Phone -->
         <li class="flex items-start gap-3">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b9a48a" stroke-width="2" class="mt-0.5 shrink-0"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          <a href="tel:+254 70 165 7527" class="hover:text-[#b9a48a]">+254 70 165 7527</a>
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#b9a48a"
+            stroke-width="2"
+            class="mt-0.5 shrink-0"
+          >
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+
+          <a
+            href="tel:+254701657527"
+            class="hover:text-[#b9a48a] transition-colors"
+          >
+            +254 70 165 7527
+          </a>
         </li>
+
       </ul>
     </div>
+
+    <!-- Memberships -->
     <div>
-      <h4 class="text-[#f4ecdc] font-semibold mb-4 text-sm uppercase tracking-wider">Memberships</h4>
+      <h4 class="text-[#f4ecdc] font-semibold mb-4 text-sm uppercase tracking-wider">
+        Memberships
+      </h4>
+
       <ul class="space-y-2 text-sm text-[#d4c9b3]/80">
         <li>Tea Board of Kenya (TBK)</li>
         <li>East Africa Tea Trade Association (EATTA)</li>
         <li>Kenya National Chamber of Commerce and Industry (KNCCI)</li>
       </ul>
-      <a href="/contact" class="inline-flex items-center gap-2 mt-5 px-4 py-2 border border-[#b9a48a] text-[#b9a48a] text-sm hover:bg-[#b9a48a] hover:text-[#0a2620] transition-colors">
+
+      <a
+        href={`${base}contact`}
+        class="inline-flex items-center gap-2 mt-5 px-4 py-2 border border-[#b9a48a] text-[#b9a48a] text-sm hover:bg-[#b9a48a] hover:text-[#0a2620] transition-colors"
+      >
         Start an Inquiry →
       </a>
     </div>
+
   </div>
+
+  <!-- Copyright -->
   <div class="border-t border-[#b9a48a]/15">
     <div class="max-w-7xl mx-auto px-5 lg:px-8 py-5 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-[#d4c9b3]/60">
-      <p>© {year} Drinco International Limited. All rights reserved.</p>
-      <p>From the highlands of Kenya to the world.</p>
+      <p>
+        © {year} Drinco International Limited. All rights reserved.
+      </p>
+
+      <p>
+        From the highlands of Kenya to the world.
+      </p>
     </div>
   </div>
 </footer>

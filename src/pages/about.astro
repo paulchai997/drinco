@@ -3,6 +3,8 @@ import Base from "../layouts/Base.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
+const base = import.meta.env.BASE_URL;
+
 const milestones = [
   { year: "2014", title: "Founded in Mombasa", desc: "Started as a single-buyer operation at the Mombasa Tea Auction, sourcing for one client in Sudan." },
   { year: "2016", title: "EATTA Membership", desc: "Joined the East Africa Tea Trade Association, opening direct access to the weekly auction floor." },
@@ -18,198 +20,316 @@ const principles = [
   { title: "Single point of accountability", desc: "From auction purchase to container loading, your tea never changes ownership — making claims, problems and resolutions simple." },
 ];
 ---
+
 <Base
   title="About — Drinco International"
   description="Kenyan tea exporter since 2014. Tea Board of Kenya licensed, EATTA member. Operating from the Olemonana House 1st Floor at Moi Avenue."
 >
   <Header />
 
+  <!-- Hero -->
   <section class="relative bg-[#0d3329] text-[#f4ecdc] py-24 md:py-32 overflow-hidden">
-  <img
-    src="/images/hero-story.jpeg"
-    alt=""
-    aria-hidden="true"
-    class="absolute inset-0 w-full h-full object-cover"
-    onerror="this.style.display='none'"
-  />
-  <div class="absolute inset-0 bg-gradient-to-br from-[#0d3329]/90 via-[#0d3329]/70 to-[#0d3329]/40"></div>
-  <div class="relative max-w-5xl mx-auto px-5 lg:px-8">
-    <p class="text-[#b9a48a] uppercase tracking-[0.3em] text-xs mb-6">Our Story</p>
-    <h1 class="text-5xl md:text-7xl leading-[0.95]" style="font-family:'DM Serif Display',serif;font-weight:400;">
-      Built on the Mombasa auction floor.<br/>
-      <span class="text-[#b9a48a]">Shipping since 2014.</span>
-    </h1>
-  </div>
-</section>
+    <img
+      src={`${base}images/hero-story.jpeg`}
+      alt=""
+      aria-hidden="true"
+      class="absolute inset-0 w-full h-full object-cover"
+      onerror="this.style.display='none'"
+    />
 
-  <section class="bg-[#f4ecdc] py-24">
-  <div class="max-w-7xl mx-auto px-5 lg:px-8 grid lg:grid-cols-2 gap-14 items-center">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#0d3329]/90 via-[#0d3329]/70 to-[#0d3329]/40"></div>
 
-    <!-- Company Image -->
-    <div>
-      <img
-        src="/images/drinco-company.jpg"
-        alt="Drinco International"
-        class="w-full h-[500px] object-cover"
-        loading="lazy"
-        decoding="async"
-      />
-    </div>
+    <div class="relative max-w-5xl mx-auto px-5 lg:px-8">
+      <p class="text-[#b9a48a] uppercase tracking-[0.3em] text-xs mb-6">
+        Our Story
+      </p>
 
-    <!-- Company Introduction -->
-    <div>
-      <p
-        class="text-[#0d3329] text-xl md:text-2xl leading-relaxed"
+      <h1
+        class="text-5xl md:text-7xl leading-[0.95]"
         style="font-family:'DM Serif Display',serif;font-weight:400;"
       >
-        Drinco International Limited is a tea exporter incorporated in Kenya
-        in the year 2014. We are licensed to carry out tea business by the
-        Tea Directorate of Kenya and are also a member of The East Africa Tea
-        Trade Association. The company is located in Mombasa, the hub of the
-        tea trade in Africa and the largest tea auction center in the world.
-      </p>
-
-      <p class="mt-8 text-[#3d3d3d] leading-relaxed">
-        Twelve years later, we are still independent, still family-held, and
-        still buying every lot ourselves at the Mombasa Tea Auction. Today our
-        customers include Egypt, Sudan, Afghanistan, Iran, Iraq, Oman,
-        Pakistan, UAE, Saudi Arabia, Kazakhstan, and Uzbekistan.
-      </p>
+        Built on the Mombasa auction floor.<br/>
+        <span class="text-[#b9a48a]">Shipping since 2014.</span>
+      </h1>
     </div>
+  </section>
 
-  </div>
-</section>
+  <!-- Company Introduction -->
+  <section class="bg-[#f4ecdc] py-24">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 grid lg:grid-cols-2 gap-14 items-center">
 
+      <!-- Company Image -->
+      <div>
+        <img
+          src={`${base}images/drinco-company.jpg`}
+          alt="Drinco International"
+          class="w-full h-[500px] object-cover"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+
+      <!-- Company Introduction -->
+      <div>
+        <p
+          class="text-[#0d3329] text-xl md:text-2xl leading-relaxed"
+          style="font-family:'DM Serif Display',serif;font-weight:400;"
+        >
+          Drinco International Limited is a tea exporter incorporated in Kenya
+          in the year 2014. We are licensed to carry out tea business by the
+          Tea Directorate of Kenya and are also a member of The East Africa Tea
+          Trade Association. The company is located in Mombasa, the hub of the
+          tea trade in Africa and the largest tea auction center in the world.
+        </p>
+
+        <p class="mt-8 text-[#3d3d3d] leading-relaxed">
+          Twelve years later, we are still independent, still family-held, and
+          still buying every lot ourselves at the Mombasa Tea Auction. Today our
+          customers include Egypt, Sudan, Afghanistan, Iran, Iraq, Oman,
+          Pakistan, UAE, Saudi Arabia, Kazakhstan, and Uzbekistan.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Timeline - currently disabled -->
   {/*<section class="bg-white py-24">
     <div class="max-w-7xl mx-auto px-5 lg:px-8">
-      <p class="text-[#0d3329] uppercase tracking-[0.25em] text-xs mb-4">Timeline</p>
-      <h2 class="text-4xl md:text-5xl text-[#0d3329] leading-tight mb-14" style="font-family:'DM Serif Display',serif;font-weight:400;">
+      <p class="text-[#0d3329] uppercase tracking-[0.25em] text-xs mb-4">
+        Timeline
+      </p>
+
+      <h2
+        class="text-4xl md:text-5xl text-[#0d3329] leading-tight mb-14"
+        style="font-family:'DM Serif Display',serif;font-weight:400;"
+      >
         Twelve years on the floor
       </h2>
+
       <div class="grid md:grid-cols-2 gap-px bg-[#0d3329]/10 border border-[#0d3329]/10">
         {milestones.map((m) => (
           <div class="bg-white p-8">
-            <p class="text-[#b9a48a] text-2xl mb-3" style="font-family:'DM Serif Display',serif;">{m.year}</p>
-            <h3 class="text-[#0d3329] text-xl mb-2" style="font-family:'DM Serif Display',serif;font-weight:400;">{m.title}</h3>
-            <p class="text-[#3d3d3d] text-sm leading-relaxed">{m.desc}</p>
+            <p
+              class="text-[#b9a48a] text-2xl mb-3"
+              style="font-family:'DM Serif Display',serif;"
+            >
+              {m.year}
+            </p>
+
+            <h3
+              class="text-[#0d3329] text-xl mb-2"
+              style="font-family:'DM Serif Display',serif;font-weight:400;"
+            >
+              {m.title}
+            </h3>
+
+            <p class="text-[#3d3d3d] text-sm leading-relaxed">
+              {m.desc}
+            </p>
           </div>
         ))}
       </div>
     </div>
   </section>*/}
 
+  <!-- Trading Expertise -->
   <section class="bg-[#0d3329] text-[#f4ecdc] py-24">
-  <div class="max-w-7xl mx-auto px-5 lg:px-8">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
 
-    <p class="text-[#b9a48a] uppercase tracking-[0.25em] text-xs mb-4">
-      Trading Expertise
-    </p>
+      <p class="text-[#b9a48a] uppercase tracking-[0.25em] text-xs mb-4">
+        Trading Expertise
+      </p>
 
-    <h2
-      class="text-4xl md:text-5xl leading-tight max-w-3xl"
-      style="font-family:'DM Serif Display',serif;font-weight:400;"
-    >
-      A team that lives and breathes Kenyan tea
-    </h2>
+      <h2
+        class="text-4xl md:text-5xl leading-tight max-w-3xl"
+        style="font-family:'DM Serif Display',serif;font-weight:400;"
+      >
+        A team that lives and breathes Kenyan tea
+      </h2>
 
-    <div class="mt-14 grid lg:grid-cols-3 gap-10">
+      <div class="mt-14 grid lg:grid-cols-3 gap-10">
 
-      {principles.map((p, i) => (
-        <div>
+        {principles.map((p, i) => (
+          <div>
 
-          <!-- Expertise Image -->
-          <div class="mb-7 overflow-hidden">
-            <img
-              src={
-                i === 0
-                  ? "/images/expertise-auction.jpeg"
-                  : i === 1
-                    ? "/images/expertise-tasting.jpeg"
-                    : "/images/expertise-shipping.jpeg"
-              }
-              alt={
-                i === 0
-                  ? "Mombasa Tea Auction"
-                  : i === 1
-                    ? "Kenyan tea tasting and quality assessment"
-                    : "Tea shipment and container loading at Mombasa Port"
-              }
-              class="w-full h-[240px] object-cover transition-transform duration-500 hover:scale-105"
-              loading="lazy"
-              decoding="async"
-            />
+            <!-- Expertise Image -->
+            <div class="mb-7 overflow-hidden">
+              <img
+                src={
+                  i === 0
+                    ? `${base}images/expertise-auction.jpeg`
+                    : i === 1
+                      ? `${base}images/expertise-tasting.jpeg`
+                      : `${base}images/expertise-shipping.jpeg`
+                }
+                alt={
+                  i === 0
+                    ? "Mombasa Tea Auction"
+                    : i === 1
+                      ? "Kenyan tea tasting and quality assessment"
+                      : "Tea shipment and container loading at Mombasa Port"
+                }
+                class="w-full h-[240px] object-cover transition-transform duration-500 hover:scale-105"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+
+            <!-- Number -->
+            <p class="text-[#b9a48a] mb-4 text-sm">
+              0{i + 1}
+            </p>
+
+            <!-- Title -->
+            <h3
+              class="text-2xl mb-3"
+              style="font-family:'DM Serif Display',serif;font-weight:400;"
+            >
+              {p.title}
+            </h3>
+
+            <!-- Description -->
+            <p class="text-[#f4ecdc]/80 leading-relaxed text-sm">
+              {p.desc}
+            </p>
+
           </div>
+        ))}
 
-          <!-- Number -->
-          <p class="text-[#b9a48a] mb-4 text-sm">
-            0{i + 1}
-          </p>
-
-          <!-- Title -->
-          <h3
-            class="text-2xl mb-3"
-            style="font-family:'DM Serif Display',serif;font-weight:400;"
-          >
-            {p.title}
-          </h3>
-
-          <!-- Description -->
-          <p class="text-[#f4ecdc]/80 leading-relaxed text-sm">
-            {p.desc}
-          </p>
-
-        </div>
-      ))}
-
-    </div>
-  </div>
-</section>
-
-  <section class="bg-[#f4ecdc] py-24">
-    <div class="max-w-7xl mx-auto px-5 lg:px-8 grid lg:grid-cols-2 gap-14">
-      <div>
-        <p class="text-[#0d3329] uppercase tracking-[0.25em] text-xs mb-4">Mombasa Operations</p>
-        <h2 class="text-4xl md:text-5xl text-[#0d3329] leading-tight" style="font-family:'DM Serif Display',serif;font-weight:400;">
-          Inside the world's largest black-tea market
-        </h2>
-        <p class="mt-6 text-[#3d3d3d] leading-relaxed">
-          The Mombasa Tea Auction — held every Monday and Tuesday in the Mombasa Tea Centre — handles roughly 70% of Kenyan tea. Our office is a 5-minute drive from the auction hall, a 15-minute drive from the port, and we run a contracted bonded storage just outside the port complex.
-        </p>
-        <p class="mt-4 text-[#3d3d3d] leading-relaxed">
-          That location is not a coincidence: it means our tea goes from warehouse to container yard in a single working day, with no truck transits between middlemen.
-        </p>
       </div>
-      <img src="/images/mombasa-port.jpg" alt="Mombasa Port at dusk — the gateway for our tea exports" class="w-full h-[460px] object-cover" />
     </div>
   </section>
 
+  <!-- Mombasa Operations -->
+  <section class="bg-[#f4ecdc] py-24">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 grid lg:grid-cols-2 gap-14">
+
+      <div>
+        <p class="text-[#0d3329] uppercase tracking-[0.25em] text-xs mb-4">
+          Mombasa Operations
+        </p>
+
+        <h2
+          class="text-4xl md:text-5xl text-[#0d3329] leading-tight"
+          style="font-family:'DM Serif Display',serif;font-weight:400;"
+        >
+          Inside the world's largest black-tea market
+        </h2>
+
+        <p class="mt-6 text-[#3d3d3d] leading-relaxed">
+          The Mombasa Tea Auction — held every Monday and Tuesday in the
+          Mombasa Tea Centre — handles roughly 70% of Kenyan tea. Our office is
+          a 5-minute drive from the auction hall, a 15-minute drive from the
+          port, and we run a contracted bonded storage just outside the port
+          complex.
+        </p>
+
+        <p class="mt-4 text-[#3d3d3d] leading-relaxed">
+          That location is not a coincidence: it means our tea goes from
+          warehouse to container yard in a single working day, with no truck
+          transits between middlemen.
+        </p>
+      </div>
+
+      <img
+        src={`${base}images/mombasa-port.jpg`}
+        alt="Mombasa Port at dusk — the gateway for our tea exports"
+        class="w-full h-[460px] object-cover"
+        loading="lazy"
+        decoding="async"
+      />
+
+    </div>
+  </section>
+
+  <!-- Credentials -->
   <section class="bg-white py-24">
     <div class="max-w-7xl mx-auto px-5 lg:px-8">
-      <p class="text-[#0d3329] uppercase tracking-[0.25em] text-xs mb-4">Credentials</p>
-      <h2 class="text-4xl md:text-5xl text-[#0d3329] leading-tight max-w-3xl mb-12" style="font-family:'DM Serif Display',serif;font-weight:400;">
+
+      <p class="text-[#0d3329] uppercase tracking-[0.25em] text-xs mb-4">
+        Credentials
+      </p>
+
+      <h2
+        class="text-4xl md:text-5xl text-[#0d3329] leading-tight max-w-3xl mb-12"
+        style="font-family:'DM Serif Display',serif;font-weight:400;"
+      >
         Licensed, certified, audited
       </h2>
+
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-[#0d3329]/10 border border-[#0d3329]/10">
+
         <div class="bg-white p-8">
-          <h3 class="text-[#0d3329] text-xl mb-2" style="font-family:'DM Serif Display',serif;">Tea Board of Kenya</h3>
-          <p class="text-sm text-[#3d3d3d]">Licensed Exporter No. TBK\TB\J\11731. Authorised to buy at the Mombasa auction and export under our own name.</p>
+          <h3
+            class="text-[#0d3329] text-xl mb-2"
+            style="font-family:'DM Serif Display',serif;"
+          >
+            Tea Board of Kenya
+          </h3>
+
+          <p class="text-sm text-[#3d3d3d]">
+            Licensed Exporter No. TBK\TB\J\11731. Authorised to buy at the
+            Mombasa auction and export under our own name.
+          </p>
         </div>
+
         <div class="bg-white p-8">
-          <h3 class="text-[#0d3329] text-xl mb-2" style="font-family:'DM Serif Display',serif;">EATTA Member</h3>
-          <p class="text-sm text-[#3d3d3d]">Full member of the East Africa Tea Trade Association — direct floor access, warehousing and dispute resolution.</p>
+          <h3
+            class="text-[#0d3329] text-xl mb-2"
+            style="font-family:'DM Serif Display',serif;"
+          >
+            EATTA Member
+          </h3>
+
+          <p class="text-sm text-[#3d3d3d]">
+            Full member of the East Africa Tea Trade Association — direct floor
+            access, warehousing and dispute resolution.
+          </p>
         </div>
+
         <div class="bg-white p-8">
-          <h3 class="text-[#0d3329] text-xl mb-2" style="font-family:'DM Serif Display',serif;">KNCCI</h3>
-          <p class="text-sm text-[#3d3d3d]">Kenya National Chamber of Commerce and Industry - Streamline International shipments by effortlessly applying for COO online.</p>
+          <h3
+            class="text-[#0d3329] text-xl mb-2"
+            style="font-family:'DM Serif Display',serif;"
+          >
+            KNCCI
+          </h3>
+
+          <p class="text-sm text-[#3d3d3d]">
+            Kenya National Chamber of Commerce and Industry - Streamline
+            International shipments by effortlessly applying for COO online.
+          </p>
         </div>
+
         {/*<div class="bg-white p-8">
-          <h3 class="text-[#0d3329] text-xl mb-2" style="font-family:'DM Serif Display',serif;">HACCP</h3>
-          <p class="text-sm text-[#3d3d3d]">Hazard Analysis Critical Control Points — every blending line has documented CCPs and daily monitoring.</p>
+          <h3
+            class="text-[#0d3329] text-xl mb-2"
+            style="font-family:'DM Serif Display',serif;"
+          >
+            HACCP
+          </h3>
+
+          <p class="text-sm text-[#3d3d3d]">
+            Hazard Analysis Critical Control Points — every blending line has
+            documented CCPs and daily monitoring.
+          </p>
         </div>*/}
+
         <div class="bg-white p-8">
-          <h3 class="text-[#0d3329] text-xl mb-2" style="font-family:'DM Serif Display',serif;">KEPHIS</h3>
-          <p class="text-sm text-[#3d3d3d]">Kenya Plant Health Inspectorate — phytosanitary clearance and pre-shipment inspection for every container.</p>
+          <h3
+            class="text-[#0d3329] text-xl mb-2"
+            style="font-family:'DM Serif Display',serif;"
+          >
+            KEPHIS
+          </h3>
+
+          <p class="text-sm text-[#3d3d3d]">
+            Kenya Plant Health Inspectorate — phytosanitary clearance and
+            pre-shipment inspection for every container.
+          </p>
         </div>
+
       </div>
     </div>
   </section>
