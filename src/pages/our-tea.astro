@@ -3,6 +3,9 @@ import Base from "../layouts/Base.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
+const base = import.meta.env.BASE_URL;
+const imgBase = `${base}/images/grades/`;
+
 // Put photos in /public/images/grades/ using the file names below.
 // Missing files fall back to a plain placeholder showing the grade code.
 const ctcGrades = [
@@ -54,7 +57,7 @@ const estates = [
   "Tagabi",
 ];
 
-const imgBase = "/images/grades/";
+
 ---
 <Base
   title="Our Tea — CTC Black, Orthodox & Specialty"
@@ -64,7 +67,7 @@ const imgBase = "/images/grades/";
 
   <section class="relative bg-[#0d3329] text-[#f4ecdc] py-24 md:py-32 overflow-hidden">
   <img
-    src="/images/hero-tea.jpg"
+   src={`${base}/images/hero-tea.jpg`}
     alt=""
     aria-hidden="true"
     class="absolute inset-0 w-full h-full object-cover"

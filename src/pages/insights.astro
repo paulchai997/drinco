@@ -4,6 +4,8 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import KleapForm from "../components/KleapForm";
 
+const base = import.meta.env.BASE_URL;
+
 /* ───────────── 1. FEED SOURCES (edit freely) ─────────────
    Each entry is any RSS/Atom URL. Google News search feeds are used by default
    because they work for any query. To pull directly from a publisher, add its

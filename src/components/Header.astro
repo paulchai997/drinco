@@ -3,12 +3,12 @@ const base = import.meta.env.BASE_URL;
 
 const nav = [
   { href: `${base}`, label: "Home" },
-  { href: `${base}about`, label: "About" },
-  { href: `${base}our-tea`, label: "Our Tea" },
-  { href: `${base}global-markets`, label: "Global Markets" },
-  { href: `${base}our-process`, label: "Our Process" },
-  { href: `${base}sustainability`, label: "Sustainability" },
-  { href: `${base}insights`, label: "Insights" },
+  { href: `${base}/about`, label: "About" },
+  { href: `${base}/our-tea`, label: "Our Tea" },
+  { href: `${base}/global-markets`, label: "Global Markets" },
+  { href: `${base}/our-process`, label: "Our Process" },
+  { href: `${base}/sustainability`, label: "Sustainability" },
+  { href: `${base}/insights`, label: "Insights" },
 ];
 
 const current = Astro.url.pathname.replace(/\/$/, "") || "/";
@@ -24,7 +24,7 @@ const normalizePath = (path: string) => path.replace(/\/$/, "") || "/";
       class="flex items-center gap-3 shrink-0 text-[#f4ecdc] hover:opacity-90"
     >
       <img
-        src={`${base}images/logo.png`}
+        src={`${base}/images/logo.png`}
         alt="Drinco International Limited logo"
         height="56"
         class="h-14 w-auto object-contain drop-shadow-[0_0_8px_rgba(244,236,220,0.35)]"
@@ -67,7 +67,7 @@ const normalizePath = (path: string) => path.replace(/\/$/, "") || "/";
 
     <!-- Contact Button -->
     <a
-      href={`${base}contact`}
+      href={`${base}/contact`}
       class="hidden lg:inline-flex items-center gap-2 px-5 py-2.5 bg-[#b9a48a] text-[#0d3329] text-sm font-semibold rounded-sm hover:bg-[#d4b896] transition-colors"
     >
       Get in Touch
