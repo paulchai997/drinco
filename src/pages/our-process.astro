@@ -13,11 +13,11 @@ const steps = [
     detail: "Tea Trade Centre, Nyerere Avenue",
   },
   {
-    n: "02",
-    title: "Sourcing",
-    desc: "For single-estate and direct-supply clients, we source outside the auction floor — visiting estates, sampling leaf and negotiating annual contracts.",
-    detail: "Manaret · Mara · Sangalo · Choimim",
-  },
+  n: "02",
+  title: "Sourcing",
+  desc: "For clients requiring specific origins or direct supply, we work with tea producers to source suitable grades, assess samples and establish reliable supply arrangements.",
+  detail: "Direct sourcing · Origin-specific supply",
+},
   {
     n: "03",
     title: "Quality Control",
@@ -39,15 +39,15 @@ const steps = [
   {
     n: "06",
     title: "Shipping",
-    desc: "From our bonded warehouse just outside the Mombasa port complex, we load FCL containers — dry or reefer, 20ft or 40ft. Vessel choice optimised for your destination and ETA window.",
+    desc: "From our bonded warehouse just outside the Mombasa port complex, we load FCL containers — dry, 20ft or 40ft. Vessel choice optimised for your destination and ETA window.",
     detail: "Mombasa Port · Direct loading",
   },
   {
-    n: "07",
-    title: "Destination",
-    desc: "CIF, CFR or FOB — your terms. We hand off to your receiving team with full documentation, pre-arrival notice and a real human contact on the Mombasa end until the container is signed for.",
-    detail: "10+ destination ports",
-  },
+  n: "07",
+  title: "Destination",
+  desc: "We coordinate shipment arrangements to suit your requirements, providing complete documentation, pre-arrival updates and reliable communication throughout the delivery process until your consignment reaches its destination.",
+  detail: "Worldwide shipping · Flexible arrangements",
+},
 ];
 ---
 <Base
@@ -116,7 +116,7 @@ const steps = [
       <p class="mt-5 text-[#f4ecdc]/85">
         Send your grade specification and destination port. We will reply with availability, lead time and a CIF or FOB quote.
       </p>
-      <a href="/contact" class="mt-8 inline-flex items-center gap-2 px-7 py-4 bg-[#b9a48a] text-[#0d3329] font-semibold hover:bg-[#d4b896]">
+      <a href={`${base}/contact`} class="mt-8 inline-flex items-center gap-2 px-7 py-4 bg-[#b9a48a] text-[#0d3329] font-semibold hover:bg-[#d4b896]">
         Start an Inquiry
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>

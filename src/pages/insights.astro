@@ -160,7 +160,7 @@ const tags = ["Auction", "CTC", "Orthodox", "Origin", "Sustainability", "Logisti
 
  <section class="relative bg-[#0d3329] text-[#f4ecdc] py-24 md:py-32 overflow-hidden">
   <img
-    src="/images/hero-insights.jpg"
+  src={`${base}/images/hero-insights.jpg`}
     alt=""
     aria-hidden="true"
     class="absolute inset-0 w-full h-full object-cover"
@@ -274,11 +274,11 @@ const tags = ["Auction", "CTC", "Orthodox", "Origin", "Sustainability", "Logisti
       Tell us the grade, volume and destination. We will come back with availability, samples and a quote against current Mombasa auction prices.
     </p>
     <div class="mt-10 flex flex-wrap justify-center gap-4">
-      <a href="/contact" class="inline-flex items-center gap-2 px-7 py-4 bg-[#b9a48a] text-[#0d3329] font-semibold hover:bg-[#d4b896] transition-colors">
+      <a href={`${base}/contact`} class="inline-flex items-center gap-2 px-7 py-4 bg-[#b9a48a] text-[#0d3329] font-semibold hover:bg-[#d4b896] transition-colors">
         Request a Quote
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
-      <a href="/our-tea" class="inline-flex items-center gap-2 px-7 py-4 border border-[#f4ecdc]/40 text-[#f4ecdc] hover:bg-[#f4ecdc]/10 transition-colors">
+      <a href={`${base}/our-tea`} class="inline-flex items-center gap-2 px-7 py-4 border border-[#f4ecdc]/40 text-[#f4ecdc] hover:bg-[#f4ecdc]/10 transition-colors">
         Explore Our Teas
       </a>
     </div>

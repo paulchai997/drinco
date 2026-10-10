@@ -192,7 +192,7 @@ const compliance = [
         </p>
 
         <a
-          href={`${base}about`}
+          href={`${base}/about`}
           class="mt-8 inline-flex items-center gap-2 text-[#0d3329] font-semibold border-b border-[#0d3329] pb-1 hover:gap-3 transition-all"
         >
           Read our story
@@ -211,52 +211,119 @@ const compliance = [
         </a>
       </div>
 
-      <div class="grid grid-cols-2 gap-4">
-        {estates.map((e) => (
-          <div class="bg-white p-6 border border-[#d9cfb1]">
-            <p class="text-xs uppercase tracking-widest text-[#b9a48a] mb-2">
-              {e.region}
-            </p>
-            <p
-              class="text-[#0d3329] text-lg font-semibold"
-              style="font-family:'DM Serif Display',serif;"
-            >
-              {e.name}
-            </p>
-            <p class="text-sm text-[#3d3d3d] mt-2">{e.alt}</p>
-          </div>
-        ))}
-      </div>
+      
+<div class="relative overflow-hidden min-h-[320px] md:min-h-[440px] shadow-lg">
+  <img
+    src={`${base}/images/tea-plantation-highlands.png`}
+    alt="Lush green tea plantations across the Kenyan highlands"
+    class="absolute inset-0 w-full h-full object-cover"
+    loading="lazy"
+    decoding="async"
+  />
+
+  <div class="absolute inset-0 bg-gradient-to-t from-[#0d3329]/75 via-transparent to-transparent"></div>
+
+  <div class="absolute bottom-0 left-0 p-6 md:p-8 text-white">
+    <p class="text-xs uppercase tracking-[0.25em] text-[#d4b896] mb-3">
+      Our Tea Sources
+    </p>
+    <h3
+      class="text-3xl md:text-4xl leading-tight"
+      style="font-family:'DM Serif Display',serif;font-weight:400;"
+    >
+      Nurtured by Nature's Altitude
+    </h3>
+    <p class="mt-3 text-sm text-white/90 max-w-md leading-relaxed">
+      Grown in Kenya's highlands, where rich soils and cool mountain air
+      contribute to exceptional tea quality.
+    </p>
+  </div>
+</div>
     </div>
   </section>
 
-  <!-- EXPORT DESTINATIONS -->
+  
+  <!-- GLOBAL EXPORT REACH -->
   <section class="bg-[#0d3329] text-[#f4ecdc] py-24">
     <div class="max-w-7xl mx-auto px-5 lg:px-8">
-      <div class="max-w-3xl mb-14">
-        <p class="text-[#b9a48a] uppercase tracking-[0.25em] text-xs mb-4">
-          Global Markets
-        </p>
+      <div class="grid lg:grid-cols-2 gap-14 items-center">
+        <div>
+          <p class="text-[#b9a48a] uppercase tracking-[0.25em] text-xs mb-4">
+            Global Tea Supply
+          </p>
 
-        <h2
-          class="text-4xl md:text-5xl leading-tight"
-          style="font-family:'DM Serif Display',serif;font-weight:400;"
-        >
-          Shipping to 10+ countries across three regions
-        </h2>
-      </div>
+          <h2
+            class="text-4xl md:text-5xl leading-tight"
+            style="font-family:'DM Serif Display',serif;font-weight:400;"
+          >
+            From Kenya to the World.
+            <span class="text-[#b9a48a]">Your Market, Our Tea.</span>
+          </h2>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-[#b9a48a]/20">
-        {markets.map((m) => (
-          <div class="bg-[#0d3329] p-8">
-            <p class="text-[#b9a48a] text-xs uppercase tracking-widest mb-3">
-              {m.region}
+          <p class="mt-6 text-[#f4ecdc]/80 text-lg leading-relaxed">
+            We welcome tea buyers, importers, wholesalers, distributors and
+            business partners from every corner of the world. Wherever your
+            business operates, Drinco International is ready to explore how
+            we can meet your tea sourcing requirements.
+          </p>
+
+          <p class="mt-4 text-[#f4ecdc]/80 leading-relaxed">
+            From CTC black tea to orthodox grades, we work with you to discuss
+            your preferred specifications, quantities, packaging and
+            destination requirements.
+          </p>
+
+          <a
+            href={`${base}/contact`}
+            class="mt-8 inline-flex items-center gap-3 px-7 py-4 bg-[#b9a48a] text-[#0d3329] font-semibold hover:bg-[#d4b896] transition-colors"
+          >
+            Become Our Global Partner
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+
+        <div class="relative min-h-[320px] md:min-h-[400px] overflow-hidden border border-[#b9a48a]/30">
+          <img
+            src={`${base}/images/mombasa-port.jpg`}
+            alt="Port of Mombasa, connecting Kenyan tea exports to international markets"
+            class="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
+          />
+
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0d3329]/90 via-[#0d3329]/20 to-transparent"></div>
+
+          <div class="absolute bottom-0 left-0 p-7 md:p-9">
+            <p class="text-[#d4b896] uppercase tracking-[0.25em] text-xs mb-3">
+              One World. Many Markets.
             </p>
-            <p class="text-lg leading-relaxed text-[#f4ecdc]">
-              {m.cities}
+
+            <h3
+              class="text-3xl md:text-4xl leading-tight"
+              style="font-family:'DM Serif Display',serif;font-weight:400;"
+            >
+              Quality Kenyan Tea,
+              <br />
+              Delivered Worldwide.
+            </h3>
+
+            <p class="mt-4 text-sm text-white/85 leading-relaxed max-w-md">
+              Your destination. Your specifications. A tea supply partner
+              committed to your business.
             </p>
           </div>
-        ))}
+        </div>
       </div>
     </div>
   </section>
@@ -450,10 +517,10 @@ const compliance = [
             </svg>
 
             <a
-              href="tel:+254701657527"
+              href="tel:+254728841558"
               class="hover:text-[#0d3329]"
             >
-              +254 70 165 7527
+              +254 72 884 1558
             </a>
           </p>
         </div>

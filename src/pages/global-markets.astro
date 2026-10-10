@@ -47,72 +47,170 @@ const regions = [
   <div class="relative max-w-5xl mx-auto px-5 lg:px-8">
     <p class="text-[#b9a48a] uppercase tracking-[0.3em] text-xs mb-6">Global Markets</p>
     <h1 class="text-5xl md:text-7xl leading-[0.95]" style="font-family:'DM Serif Display',serif;font-weight:400;">
-      Shipping to <span class="text-[#b9a48a]">10+ countries</span><br/>
-      across three regions.
+      Your Global Partner <span class="text-[#b9a48a]">in Tea Supply.</span>
     </h1>
   </div>
 </section>
 
-  <section class="bg-[#f4ecdc] py-16">
-    <div class="max-w-7xl mx-auto px-5 lg:px-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[#0d3329]/10 border border-[#0d3329]/10">
+<section class="bg-[#f4ecdc] py-16">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[#0d3329]/10 border border-[#0d3329]/10">
+    {[
+      {
+        n: "Global Reach",
+        l: "Connecting tea buyers and markets worldwide"
+      },
+      {
+        n: "Quality First",
+        l: "Carefully sourced tea to meet your specifications"
+      },
+      {
+        n: "Reliable Supply",
+        l: "Dependable procurement and export coordination"
+      },
+      {
+        n: "Tailored Solutions",
+        l: "Flexible grades and packaging for your business"
+      },
+    ].map((s) => (
+      <div class="bg-[#f4ecdc] p-8 text-center">
+        <p
+          class="text-[#0d3329] text-2xl md:text-3xl"
+          style="font-family:'DM Serif Display',serif;"
+        >
+          {s.n}
+        </p>
+        <p class="text-sm text-[#3d3d3d] mt-3 leading-relaxed">
+          {s.l}
+        </p>
+      </div>
+    ))}
+  </div>
+</section>
+
+
+<section class="bg-white py-24">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8">
+    <div class="max-w-3xl mb-14">
+      <p class="text-[#b9a48a] uppercase tracking-[0.25em] text-xs mb-4">
+        Global Tea Supply
+      </p>
+      <h2
+        class="text-4xl md:text-6xl text-[#0d3329] leading-tight"
+        style="font-family:'DM Serif Display',serif;font-weight:400;"
+      >
+        Connecting tea buyers to quality Kenyan tea.
+      </h2>
+      <p class="mt-6 text-[#3d3d3d] leading-relaxed">
+        We supply international importers, distributors, wholesalers,
+        tea packers and manufacturers with tea sourced to meet their
+        requirements. Wherever your business operates, we work with you
+        to identify suitable grades, packaging and export solutions.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-[#0d3329]/10 border border-[#0d3329]/10">
       {[
-        { n: "10+", l: "Destination countries" },
-        { n: "3", l: "Continents served" },
-        { n: "12,000 t", l: "Annual export capacity" },
-        { n: "8–32 d", l: "Transit time to port" },
-      ].map((s) => (
-        <div class="bg-[#f4ecdc] p-8 text-center">
-          <p class="text-[#0d3329] text-4xl" style="font-family:'DM Serif Display',serif;">{s.n}</p>
-          <p class="text-sm text-[#3d3d3d] mt-2 uppercase tracking-widest">{s.l}</p>
+        {
+          number: "01",
+          title: "International Buyers",
+          desc: "Supporting importers, wholesalers, distributors and trading companies seeking a dependable Kenyan tea supplier."
+        },
+        {
+          number: "02",
+          title: "Flexible Tea Selection",
+          desc: "CTC black tea, orthodox tea and a range of grades to suit different markets, applications and customer specifications."
+        },
+        {
+          number: "03",
+          title: "Export Solutions",
+          desc: "Coordinated documentation, packaging and shipping arrangements tailored to individual orders and destination requirements."
+        },
+        {
+          number: "04",
+          title: "Bulk & Custom Packaging",
+          desc: "Packaging options designed for bulk buyers, tea packers, manufacturers and private-label requirements."
+        },
+        {
+          number: "05",
+          title: "Quality & Consistency",
+          desc: "A quality-focused sourcing approach to help customers achieve the grade, character and consistency they require."
+        },
+        {
+          number: "06",
+          title: "New Market Opportunities",
+          desc: "We welcome enquiries from established and emerging markets and explore supply options based on your requirements."
+        }
+      ].map((item) => (
+        <div class="bg-[#f4ecdc] p-7 md:p-9">
+          <p
+            class="text-[#b9a48a] text-2xl mb-5"
+            style="font-family:'DM Serif Display',serif;"
+          >
+            {item.number}
+          </p>
+          <h3 class="text-[#0d3329] text-xl font-semibold mb-3">
+            {item.title}
+          </h3>
+          <p class="text-[#3d3d3d] text-sm leading-relaxed">
+            {item.desc}
+          </p>
         </div>
       ))}
     </div>
-  </section>
 
-  {regions.map((r, i) => (
-    <section class={`${i % 2 === 0 ? "bg-white" : "bg-[#f4ecdc]"} py-20`}>
-      <div class="max-w-7xl mx-auto px-5 lg:px-8 grid lg:grid-cols-12 gap-10">
-        <div class="lg:col-span-4">
-          <p class="text-[#b9a48a] uppercase tracking-[0.25em] text-xs mb-3">Region 0{i + 1}</p>
-          <h2 class="text-4xl md:text-5xl text-[#0d3329] leading-tight" style="font-family:'DM Serif Display',serif;font-weight:400;">{r.name}</h2>
-          <p class="mt-5 text-[#3d3d3d] leading-relaxed">{r.intro}</p>
-        </div>
-        <div class="lg:col-span-8 grid sm:grid-cols-2 gap-px bg-[#0d3329]/10 border border-[#0d3329]/10">
-          <div class="bg-inherit p-6">
-            <p class="text-[#0d3329] text-xs uppercase tracking-widest mb-3">Markets served</p>
-            <ul class="space-y-1.5 text-[#3d3d3d]">
-              {r.countries.map((c) => (
-                <li class="flex items-center gap-2">
-                  <span class="w-1 h-1 rounded-full bg-[#b9a48a]"></span>
-                  {c}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div class="bg-inherit p-6">
-            <p class="text-[#0d3329] text-xs uppercase tracking-widest mb-3">Grades</p>
-            <p class="text-[#3d3d3d]">{r.grades}</p>
-            <p class="text-[#0d3329] text-xs uppercase tracking-widest mt-6 mb-3">Shipping</p>
-            <p class="text-[#3d3d3d]">{r.shipping}</p>
-          </div>
-        </div>
+    <div class="mt-12 bg-[#0d3329] text-[#f4ecdc] p-8 md:p-12 flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+      <div class="max-w-2xl">
+        <h3
+          class="text-2xl md:text-3xl mb-3"
+          style="font-family:'DM Serif Display',serif;font-weight:400;"
+        >
+          Let's discuss your tea requirements.
+        </h3>
+        <p class="text-[#f4ecdc]/80 leading-relaxed">
+          Tell us your destination market, preferred grades, packaging
+          and quantity. Our team will work with you to explore a suitable
+          supply solution.
+        </p>
       </div>
-    </section>
-  ))}
-
-  <section class="bg-[#0d3329] text-[#f4ecdc] py-24">
-    <div class="max-w-4xl mx-auto px-5 lg:px-8 text-center">
-      <h2 class="text-4xl md:text-5xl leading-tight" style="font-family:'DM Serif Display',serif;font-weight:400;">
-        Looking for a market not shown here?
-      </h2>
-      <p class="mt-6 text-[#f4ecdc]/80">
-        We work through approved agents in additional countries. Tell us where you are and we will tell you what is possible.
-      </p>
-      <a href="/contact" class="mt-8 inline-flex items-center gap-2 px-7 py-4 bg-[#b9a48a] text-[#0d3329] font-semibold hover:bg-[#d4b896]">
-        Talk to our team →
+      <a
+        href={`${base}/contact`}
+        class="shrink-0 inline-flex items-center justify-center gap-2 px-7 py-4 bg-[#b9a48a] text-[#0d3329] font-semibold hover:bg-[#d4b896] transition-colors"
+      >
+        Discuss Your Requirements →
       </a>
     </div>
-  </section>
+  </div>
+</section>
+
+<section class="bg-[#0d3329] text-[#f4ecdc] py-24">
+  <div class="max-w-4xl mx-auto px-5 lg:px-8 text-center">
+    <p class="text-[#b9a48a] uppercase tracking-[0.25em] text-xs mb-5">
+      Your Global Tea Partner
+    </p>
+
+    <h2
+      class="text-4xl md:text-6xl leading-tight"
+      style="font-family:'DM Serif Display',serif;font-weight:400;"
+    >
+      Let's Bring Quality Kenyan Tea to Your Market.
+    </h2>
+
+    <p class="mt-6 text-[#f4ecdc]/80 leading-relaxed max-w-2xl mx-auto">
+      Whether you are an importer, distributor, wholesaler, tea packer
+      or manufacturer, we welcome enquiries from markets worldwide.
+      Share your requirements with us, and let's explore the right tea
+      grades, packaging and supply solutions for your business.
+    </p>
+
+    <a
+      href={`${base}/contact`}
+      class="mt-8 inline-flex items-center gap-2 px-7 py-4 bg-[#b9a48a] text-[#0d3329] font-semibold hover:bg-[#d4b896] transition-colors"
+    >
+      Discuss Your Requirements
+      <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</section>
 
   <Footer />
 </Base>
