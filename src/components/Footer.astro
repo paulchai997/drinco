@@ -3,12 +3,12 @@ const base = import.meta.env.BASE_URL;
 const year = new Date().getFullYear();
 
 const links = [
-  { href: `${base}/about`, label: "About Us" },
-  { href: `${base}/our-tea`, label: "Our Tea" },
-  { href: `${base}/global-markets`, label: "Global Markets" },
-  { href: `${base}/our-process`, label: "Our Process" },
-  { href: `${base}/sustainability`, label: "Sustainability" },
-  { href: `${base}/insights`, label: "Insights" },
+  { href: `${base}about`, label: "About Us" },
+  { href: `${base}our-tea`, label: "Our Tea" },
+  { href: `${base}global-markets`, label: "Global Markets" },
+  { href: `${base}our-process`, label: "Our Process" },
+  { href: `${base}sustainability`, label: "Sustainability" },
+  { href: `${base}insights`, label: "Insights" },
 ];
 ---
 
@@ -19,7 +19,7 @@ const links = [
     <div>
       <div class="flex items-center gap-3 mb-5">
         <img
-          src={`${base}/images/logo.png`}
+          src={`${base}images/logo.png`}
           alt="Drinco International Limited logo"
           height="48"
           class="h-12 w-auto shrink-0 object-contain drop-shadow-[0_0_8px_rgba(244,236,220,0.35)]"
