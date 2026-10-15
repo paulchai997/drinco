@@ -1,4 +1,4 @@
-// Drinco International website - standalone Astro configuration.
+// Drinco International website - custom domain configuration.
 
 import { defineConfig } from "astro/config";
 import react from "@astrojs/react";
@@ -6,11 +6,11 @@ import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import { fileURLToPath } from "node:url";
 
-const site = "https://paulchai997.github.io";
+const site = "https://drincointernational.world";
 
 export default defineConfig({
   site,
-  base: "/drinco",
+  base: "/",
   output: "static",
   compressHTML: true,
 
