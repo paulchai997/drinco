@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import { ClientRouter } from "astro:transitions";
+import WhatsAppChat from "../components/WhatsAppChat.astro";
 
 interface Props {
   title: string;
@@ -672,5 +673,6 @@ const jsonLd = {
 (function(){var S='[class*="animate-fade"],[class*="animate-in"],[class*="animate-slide"],[class*="animate-zoom"],[data-reveal]';function skip(el){for(var n=el;n&&n!==document.body;n=n.parentElement){if(n.nodeType!==1)continue;var cs=getComputedStyle(n);if(cs.display==="none"||cs.visibility==="hidden")return true;if(n.getAttribute("aria-hidden")==="true"||n.hasAttribute("hidden")||n.getAttribute("data-state")==="closed"||n.getAttribute("aria-expanded")==="false")return true;}var c=getComputedStyle(el);if(c.position==="absolute"||c.position==="fixed"){var p=el.parentElement;if(p){var ch=p.children;for(var i=0;i<ch.length;i++){var sib=ch[i];if(sib!==el){var sc=getComputedStyle(sib);if((sc.position==="absolute"||sc.position==="fixed")&&parseFloat(sc.opacity)>=0.99)return true;}}}}return false;}function show(el){try{if(skip(el))return;if(window.__kleapShow)window.__kleapShow(el,".5s");}catch(e){}}function run(){var els=[].slice.call(document.querySelectorAll(S));if(!els.length)return;if("IntersectionObserver" in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){show(e.target);io.unobserve(e.target);}});},{rootMargin:"0px 0px -8% 0px"});els.forEach(function(el){io.observe(el);});}setTimeout(function(){var vh=window.innerHeight||800;els.forEach(function(el){if(navigator.webdriver||el.getBoundingClientRect().top<vh)show(el);});},2500);}if(document.readyState!=="loading")run();else document.addEventListener("DOMContentLoaded",run);})();
       })();
     </script>
+    <WhatsAppChat />
   </body>
 </html>
