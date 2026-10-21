@@ -9,50 +9,50 @@ const steps = [
   {
     n: "01",
     title: "Tea Auction",
-    desc: "Every Monday and Tuesday at the Mombasa Tea Auction, we assess lots, follows the market and secures the grades our clients need. We buy on behalf of named orders — never speculative.",
-    detail: "Tea Trade Centre, Nyerere Avenue",
+    desc: "We assess available tea lots at the Mombasa Tea Auction and coordinate purchasing according to customer orders, grade requirements and prevailing market conditions.",
+    detail: "Mombasa Tea Auction",
   },
   {
-  n: "02",
-  title: "Sourcing",
-  desc: "For clients requiring specific origins or direct supply, we work with tea producers to source suitable grades, assess samples and establish reliable supply arrangements.",
-  detail: "Direct sourcing · Origin-specific supply",
-},
+    n: "02",
+    title: "Sourcing",
+    desc: "For buyers seeking particular origins or supply arrangements, we work to identify suitable tea, review available samples and coordinate sourcing according to the required specifications.",
+    detail: "Grade and origin requirements",
+  },
   {
     n: "03",
-    title: "Quality Control",
-    desc: "Every lot is tasted in our Mombasa laboratory. Off-flavours, stalk, fibre and moisture are tested against a documented specification. Lots that fail are returned to the warehouse.",
-    detail: "Mombasa Lab · HACCP controlled",
+    title: "Quality Assessment",
+    desc: "Tea is assessed against relevant quality requirements and customer specifications. Where applicable, sample evaluation and checks help determine whether a lot is suitable for the intended order.",
+    detail: "Quality and specification checks",
   },
   {
     n: "04",
-    title: "Blending",
-    desc: "For clients requesting a consistent house blend, we build recipes that survive container transit — flavour lock, predictable colour, repeatable cup profile.",
-    detail: "HACCP-certified blending lines",
+    title: "Order Preparation",
+    desc: "We coordinate the preparation of tea according to the agreed grade, quantity, packaging and customer requirements. Any special processing or product preparation is discussed and confirmed before fulfilment.",
+    detail: "Order-specific preparation",
   },
   {
     n: "05",
-    title: "Documentation",
-    desc: "Phytosanitary certificates, Tea Board of Kenya export permits, KEPHIS inspection, KRA customs entries and Bills of Lading. We handle the paperwork so you don't.",
-    detail: "Full export dossier per shipment",
+    title: "Export Documentation",
+    desc: "We coordinate the export documents and applicable regulatory requirements for each shipment, working with the relevant authorities and service providers according to the product and destination.",
+    detail: "Shipment documentation",
   },
   {
     n: "06",
-    title: "Shipping",
-    desc: "From our bonded warehouse just outside the Mombasa port complex, we load FCL containers — dry, 20ft or 40ft. Vessel choice optimised for your destination and ETA window.",
-    detail: "Mombasa Port · Direct loading",
+    title: "Shipping Coordination",
+    desc: "We coordinate shipment arrangements, cargo preparation and logistics with the relevant service providers. Available shipping options depend on the order, destination, carrier and agreed delivery requirements.",
+    detail: "Export and freight coordination",
   },
   {
-  n: "07",
-  title: "Destination",
-  desc: "We coordinate shipment arrangements to suit your requirements, providing complete documentation, pre-arrival updates and reliable communication throughout the delivery process until your consignment reaches its destination.",
-  detail: "Worldwide shipping · Flexible arrangements",
-},
+    n: "07",
+    title: "Destination & Delivery",
+    desc: "We keep customers informed about shipment progress and coordinate documentation and delivery arrangements according to the agreed order and destination requirements.",
+    detail: "Worldwide customer coordination",
+  },
 ];
 ---
 <Base
-  title="Our Process — From Mombasa Auction to Destination Port"
-  description="Seven documented steps from the Mombasa Tea Auction to your warehouse. Tea auction, sourcing, QC, blending, documentation, shipping, destination handover."
+  title="Our Tea Export Process | Drinco International"
+  description="Discover how Drinco International coordinates Kenyan tea sourcing, auction purchasing, quality checks, export documentation and shipping for international buyers."
 >
   <Header />
 
@@ -68,18 +68,18 @@ const steps = [
   <div class="relative max-w-5xl mx-auto px-5 lg:px-8">
     <p class="text-[#b9a48a] uppercase tracking-[0.3em] text-xs mb-6">Our Process</p>
     <h1 class="text-5xl md:text-7xl leading-[0.95]" style="font-family:'DM Serif Display',serif;font-weight:400;">
-      Seven steps from<br/>
-      <span class="text-[#b9a48a]">auction to destination.</span>
+      From Kenyan Tea<br/>
+      <span class="text-[#b9a48a]">Sourcing to Export.</span>
     </h1>
     <p class="mt-8 text-lg text-[#f4ecdc]/85 max-w-3xl leading-relaxed">
-      Every consignment follows the same documented path. No shortcuts, no middlemen. You know who bought it, who tasted it, who packed it and who shipped it.
+      Discover how we coordinate tea purchasing, sourcing, quality assessment, order preparation, export documentation and shipping. Each order is handled according to the agreed specifications, applicable requirements and destination arrangements.
     </p>
   </div>
 </section>
 
   <section class="bg-[#f4ecdc] py-12">
     <div class="max-w-7xl mx-auto px-5 lg:px-8">
-      <div class="grid grid-cols-7">
+      <div class="grid grid-cols-4 md:grid-cols-7">
         {steps.map((s, i) => (
           <div class={`p-4 text-[#0d3329] text-xs uppercase tracking-widest text-center ${i < steps.length - 1 ? "border-r border-[#0d3329]/20" : ""}`}>
             {s.n}
@@ -114,7 +114,7 @@ const steps = [
         Ready to order?
       </h2>
       <p class="mt-5 text-[#f4ecdc]/85">
-        Send your grade specification and destination port. We will reply with availability, lead time and a CIF or FOB quote.
+         Share your preferred tea grade, quantity, packaging and destination. We will review your requirements and discuss availability, documentation, shipping arrangements and a suitable quotation.
       </p>
       <a href={`${base}contact`} class="mt-8 inline-flex items-center gap-2 px-7 py-4 bg-[#b9a48a] text-[#0d3329] font-semibold hover:bg-[#d4b896]">
         Start an Inquiry

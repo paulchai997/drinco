@@ -13,11 +13,11 @@ const ctcGrades = [
   { code: "PF1", name: "Pekoe Fannings 1", img: "ctc-pf1.jpg", desc: "Smaller broken leaf for tea bag manufacture. Fast-infusing, strong colour." },
   { code: "PD", name: "Pekoe Dust", img: "ctc-pd.jpg", desc: "Fine particles — the grade of choice for single-serve sachets and vending." },
   { code: "D1", name: "Dust 1", img: "ctc-d1.jpg", desc: "The smallest grade. Maximum surface area — colour and strength in seconds." },
-  { code: "DUST", name: "Dust", img: "ctc-dust.jpg", desc: "Dust tea is the essence of convenience and strength, made from the tiniest bits of broken leaves, almost powdery in texture." },
-  { code: "BMF", name: "Broken Mixed Fannings", img: "ctc-bmf.jpg", desc: "BMF is a highly fibrous tea grade, with minimal traces of black tea, making it a unique choice in the world of teas." },
+  { code: "DUST", name: "Dust", img: "ctc-dust.jpg", desc: "Fine tea particles commonly used where rapid infusion and a strong cup are desired." },
+  { code: "BMF", name: "Broken Mixed Fannings", img: "ctc-bmf.jpg", desc: "A fibrous tea grade with a different appearance and composition from conventional black tea grades. Confirm the exact description against your supplier's grade specification." },
   { code: "BP", name: "Broken Pekoe", img: "ctc-bp.jpg", desc: "Almost similar to BP1 grade but varies in size. Made up of black, bold, round, granular particles that are larger than BP1." },
-  { code: "D2", name: "Dust 2", img: "ctc-d2.jpg", desc: "Consists of small fine to very fine tea particles that tends to powdery to the touch." },
-  { code: "FNGS", name: "Fannings", img: "ctc-fngs.jpg", desc: "Usually consists of small particles of tea dust and tiny leaf fragments making it to have a coarse texture." },
+  { code: "D2", name: "Dust 2", img: "ctc-d2.jpg", desc: "Fine tea particles, with size and appearance varying by lot and supplier specification." },
+  { code: "FNGS", name: "Fannings", img: "ctc-fngs.jpg", desc: "Small tea particles suited to applications where rapid infusion is required." },
 ];
 
 const orthodoxGrades = [
@@ -25,9 +25,9 @@ const orthodoxGrades = [
   { code: "BOP", name: "Broken Orange Pekoe", img: "orthodox-bop.jpg", desc: "Orthodox-broken leaf with a fuller body than OP." },
   { code: "FBOP", name: "Flowery Broken Orange Pekoe", img: "orthodox-fbop.jpg", desc: "Tip-laden orthodox leaf with a refined, almost floral cup." },
   { code: "P / PEK", name: "Pekoe", img: "orthodox-pekoe.jpg", desc: "A fine grade of tea made up of young tender leaves and buds. Its appearance is similar to black peppercorn as its leaves are shorter, twisted/curly and ball-shaped. Gives a light golden reddish liquor with an invigorating delicate taste that’s quite brisk. Demanded more for its attractive appearance than for the cup quality." },
-  { code: "OPA", name: "ORANGE PEKOE A", img: "orthodox-opa.jpg", desc: "Consists of large, bold and slightly twisted leaves. Leaves are larger compared to OP and OP1. Light/ fairly bright golden reddish liquor with a delicate lighter/mild taste." },
+  { code: "OPA", name: "ORANGE PEKOE A", img: "orthodox-opa.jpg", desc: "A large-leaf Orthodox grade, typically characterised by bold, slightly twisted leaves. Cup characteristics vary by lot." },
   { code: "FOP", name: "Flowery Orange Pekoe", img: "orthodox-fop.jpg", desc: "This is a high-quality grade of orthodox tea with an attractive leaf appearance characterized by long, semi-wiry leaves with a few visible tips. With every sip, expect to enjoy a nuanced flavour profile that is delicate and floral in character. Slightly darker liquor compared to OPA that is briskier and bright. Liked more for its leaf appearance than liquor." },
-  { code: "OP1", name: "Orange Pekoe 1", img: "orthodox-op1.jpg", desc: "Orange Pekoe 1, or OP1, is a distinguished tea grade known for its long, slightly wiry, and twisted leavesThis grade of tea usually consists of long, slender, slightly wiry/ twisted leaves and buds. It has a full-bodied profile with a thick robust character. It has subtle fruity undertones. Take a moment to take a deep breath and enjoy its beautiful aroma followed by a sip to enjoy its unique taste. A reason which makes it favourable among tea enthusiasts. The tea once brewed gives a coppery liquor with reddish highlights that’s light in tone." },
+  { code: "OP1", name: "Orange Pekoe 1", img: "orthodox-op1.jpg", desc: "A long, wiry Orthodox leaf grade. Aroma, liquor colour and flavour depend on origin and production." },
   { code: "FP", name: "Flowery Pekoe", img: "orthodox-fp.jpg", desc: "Mostly made up of young tea leaves and a higher proportion of buds thus giving it a flowery aroma and delicate flavour. The buds give the tea a more nuanced and aromatic profile. Neater and even than the pekoe, it is curly and free of stalk and flaky leaves, commands a higher price due to its brighter and cleaner liquors." },
   { code: "FBOPF", name: "Flowery Broken Orange Pekoe Fannings", img: "orthodox-fbopf.jpg", desc: "Consists of small, twisted, fairly blacker leaf with a significant number of golden tips from the tea buds. Be sure to sip on a well-rounded cup since its brew has a rich typical aromatic scent with a light golden-reddish colour." },
   { code: "FBOPFSP", name: "Flowery Broken Orange Pekoe Fannings Special", img: "orthodox-fbopfsp.jpg", desc: "Consists of small, twisted, fairly blacker leaf with a significant number of golden tips from the tea buds. Be sure to sip on a well-rounded cup since its brew has a rich typical aromatic scent with a light golden-reddish colour." },
@@ -37,7 +37,7 @@ const orthodoxGrades = [
   { code: "GOF", name: "Golden Orange Fannings", img: "orthodox-gof.jpg", desc: "A lower grade fannings tea consisting of small leaf particles. Majorly used as a filler in tea bag blends giving them that extra flavour boost. Has a full-bodied liquor with little astringency, and strong cup." },
   { code: "TGFOP", name: "Tippy Golden Flowery Orange Pekoe", img: "orthodox-tgfop.jpg", desc: "Contains a higher proportion of tips influencing a tea rich in flavour and aroma. Bold, brisk flavour and bright liquor. Savour those golden tips when enjoying a cup of TGFOP." },
   { code: "TBOP", name: "Tippy Broken Orange Pekoe", img: "orthodox-tbop.jpg", desc: "A broken leaf grade with an abundance of flowering buds. Quite a flavourful and aromatic tea grade owing to the abundance of buds." },
-  { code: "FOF", name: "Flowery Orange Fannings", img: "orthodox-fof.jpg", desc: "This tea grade consists of smaller leaf particles and fanning’s that are finely broken and smaller in size compared to whole leaf teas. Be sure to expect a strong, brisk flavour with a robust and sometimes slightly astringent taste. Ideal for strong tea cup lovers.A rapid infuser, releasing its flavour more quickly. It often has a rich and full-bodied aroma though lacking in the subtle notes found in higher grade teas." },
+  { code: "FOF", name: "Flowery Orange Fannings", img: "orthodox-fof.jpg", desc: "A fannings grade with small leaf particles that can infuse relatively quickly. Cup strength depends on the tea and brewing conditions." },
 ];
 
 
@@ -70,8 +70,8 @@ const estates = [
 
 ---
 <Base
-  title="Our Tea — CTC Black, Orthodox & Specialty"
-  description="CTC black tea, orthodox whole-leaf and specialty grades from the Kenyan highlands. Standard BP1, PF1, PD, D1, FBOP plus orthodox OP, Pekoe and FBOP."
+  title="Kenyan Tea Supplier | CTC Black, Orthodox & Green Tea"
+  description="Explore Kenyan CTC black tea, Orthodox whole-leaf tea, green tea and export grades from Drinco International Limited in Mombasa. Contact us for specifications, packaging and export enquiries."
 >
   <Header />
 
@@ -87,9 +87,9 @@ const estates = [
   <div class="relative max-w-5xl mx-auto px-5 lg:px-8">
     <p class="text-[#b9a48a] uppercase tracking-[0.3em] text-xs mb-6">Our Tea</p>
     <h1 class="text-5xl md:text-7xl leading-[0.95]" style="font-family:'DM Serif Display',serif;font-weight:400;">
-      Three methods.<br/>
-      <span class="text-[#b9a48a]">A world of grades.</span><br/>
-      One origin.
+      Kenyan Tea.<br/>
+      <span class="text-[#b9a48a]">Three Tea Categories.</span><br/>
+      Global Supply.
     </h1>
   </div>
 </section>
@@ -103,7 +103,7 @@ const estates = [
           <h2 class="text-4xl md:text-5xl text-[#0d3329] leading-tight" style="font-family:'DM Serif Display',serif;font-weight:400;">CTC Black Tea</h2>
         </div>
         <p class="text-[#3d3d3d] leading-relaxed">
-          Crush, Tear, Curl — the method that built the Kenyan tea industry. The leaf is macerated, fermented and dried into small hard granules. CTC Black, for brewing strength, colour and consistency at scale.
+          Kenyan CTC (Crush, Tear and Curl) black tea is processed into small granules suited to producing a strong cup with good colour and brisk flavour. Drinco supplies CTC grades for tea packers, wholesalers, distributors and other commercial buyers, subject to availability and customer specifications.
         </p>
       </div>
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-[#0d3329]/10 border border-[#0d3329]/10">
@@ -142,7 +142,7 @@ const estates = [
           <h2 class="text-4xl md:text-5xl text-[#0d3329] leading-tight" style="font-family:'DM Serif Display',serif;font-weight:400;">Orthodox Tea</h2>
         </div>
         <p class="text-[#3d3d3d] leading-relaxed">
-          Whole-leaf, hand-rolled and tip-preserved. Orthodox Kenyan teas are increasingly sought by speciality blenders and premium tea bag packers who want flavour, not just colour.
+          Explore Kenyan Orthodox black tea, including whole-leaf and broken-leaf grades with varied appearances, aromas and cup characteristics. We welcome enquiries from importers, specialty tea businesses, wholesalers and packers seeking particular grades, quantities and quality specifications.
         </p>
       </div>
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-[#0d3329]/10 border border-[#0d3329]/10">
@@ -190,10 +190,7 @@ const estates = [
           </h2>
         </div>
         <p class="text-[#3d3d3d] leading-relaxed">
-          Discover green tea with its fresh character, delicate aromas and
-          distinctive flavour. We welcome enquiries for green tea grades and
-          specifications to suit your business, packaging requirements and
-          intended market.
+          Discover green tea options for buyers seeking a fresh character, delicate aroma and refreshing cup. Contact Drinco to discuss available grades, product specifications, packaging options and requirements for your intended market.
         </p>
       </div>
 
@@ -288,13 +285,13 @@ const estates = [
       <div>
         <p class="text-[#b9a48a] uppercase tracking-[0.25em] text-xs mb-4">Origin & Estates</p>
         <h2 class="text-4xl md:text-5xl leading-tight mb-6" style="font-family:'DM Serif Display',serif;font-weight:400;">
-          Quality Sourcing for Global Markets
+          Quality Kenyan Tea for Global Buyers
         </h2>
         <p class="text-[#f4ecdc]/80 leading-relaxed">
-          Beyond the standard auction grades, we maintain direct supply relationships with estates across Kenya's growing regions. Single-estate lots can be reserved, blended to your spec, or packed under your label.
+          We source tea through established supply relationships and work with buyers to identify suitable grades and available estate lots. Enquiries can include specific origin preferences, quality specifications, packaging requirements and private-label options, subject to availability..
         </p>
         <a href={`${base}contact`} class="mt-8 inline-flex items-center gap-2 px-6 py-3 bg-[#b9a48a] text-[#0d3329] font-semibold hover:bg-[#d4b896]">
-          Request single-estate availability →
+          Enquire About Tea Availability →
         </a>
       </div>
       <div class="grid grid-cols-1 gap-4"> {[ { number: "01", title: "Carefully Selected Lots", desc: "Tea sourced to meet specific quality, grade and customer requirements." }, { number: "02", title: "Quality-Focused Sourcing", desc: "Every selection is guided by cup quality, consistency and suitability for its intended market." }, { number: "03", title: "Reliable Export Supply", desc: "Coordinated procurement and export logistics to support dependable order fulfilment." } ].map((item) => ( <div class="bg-[#174337] border border-[#b9a48a]/20 p-6 md:p-7 flex gap-5 items-start"> <span class="text-[#b9a48a] text-2xl shrink-0" style="font-family:'DM Serif Display',serif;" > {item.number} </span> <div> <h3 class="text-[#f4ecdc] text-lg font-semibold mb-2"> {item.title} </h3> <p class="text-[#f4ecdc]/70 text-sm leading-relaxed"> {item.desc} </p> </div> </div> ))} </div>
@@ -331,9 +328,9 @@ const estates = [
   <section class="bg-white py-20 text-center">
     <div class="max-w-3xl mx-auto px-5">
       <h2 class="text-3xl md:text-4xl text-[#0d3329] leading-tight" style="font-family:'DM Serif Display',serif;font-weight:400;">
-        Need a custom blend or a specific grade not listed here?
+        Looking for a Specific Kenyan Tea Grade?
       </h2>
-      <p class="mt-4 text-[#3d3d3d]">Send us your specification. We will quote against current Mombasa auction prices.</p>
+      <p class="mt-4 text-[#3d3d3d]"> Tell us your preferred grade, quantity, packaging and destination. We will review your requirements and provide a quotation based on availability and prevailing market prices.</p>
       <a href={`${base}contact`} class="mt-8 inline-flex items-center gap-2 px-7 py-4 bg-[#0d3329] text-[#f4ecdc] font-semibold hover:bg-[#1a4a3d]">
         Request a Quote
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>

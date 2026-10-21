@@ -25,12 +25,60 @@ const MAX_ARTICLES = 7; // 1 featured + 6 in the grid
 /* ───────────── 2. FALLBACK (your original articles) ─────────────
    Shown only if the live feeds fail or return too few items. */
 const fallbackArticles = [
-  { cat: "Market Update", date: "March 2025", title: "Mombasa auction prices soften as Pakistan demand rebounds", excerpt: "After a quiet Q4, the Mombasa floor saw BP1 prices ease 4% week-on-week as Pakistani buyers returned for the spring shipping window. A look at what that means for Q2 contracts.", read: "4 min read", url: "", image: "" },
-  { cat: "Origin", date: "February 2025", title: "How the Rift Valley micro-climate shapes Kenyan flavour", excerpt: "Why teas grown on the Kericho plateau taste different from those on the Nandi Hills — even when they're the same cultivar and processed in the same factory.", read: "6 min read", url: "", image: "" },
-  { cat: "Logistics", date: "January 2025", title: "Shipping Kenyan tea to Central Asia: the routes that work", excerpt: "Reefer versus dry, Bandar Abbas versus Aktau, transit insurance and customs. A practical guide for buyers in Kazakhstan, Uzbekistan and Kyrgyzstan.", read: "8 min read", url: "", image: "" },
-  { cat: "Quality", date: "December 2024", title: "Reading an Mombasa auction catalogue: a buyer's primer", excerpt: "What the catalogue abbreviations mean, how to spot a hidden gem, and why the 'invoice mark' is the single most important number on the page.", read: "5 min read", url: "", image: "" },
-  { cat: "Sustainability", date: "November 2024", title: "Smallholder tea and the KTDA factories explained", excerpt: "How Kenya's smallholder farmers — over 600,000 of them — feed the Mombasa auction, and why direct relationships with KTDA factories matter for buyers.", read: "7 min read", url: "", image: "" },
-  { cat: "Industry", date: "October 2024", title: "Orthodox vs CTC: which one does your market actually want?", excerpt: "A practical framework for choosing between orthodox and CTC grades for a specific destination market — and how to read the demand signals before you order.", read: "5 min read", url: "", image: "" },
+  {
+    cat: "Market Update",
+    date: "Tea Market Guide",
+    title: "Understanding the Mombasa Tea Auction",
+    excerpt: "Learn how tea lots are presented, evaluated and traded through the Mombasa auction system, and why current market conditions matter when planning purchases.",
+    read: "Buyer guide",
+    url: "",
+    image: ""
+  },
+  {
+    cat: "Origin",
+    date: "Tea Origin Guide",
+    title: "What Makes Kenyan Tea Distinctive?",
+    excerpt: "Explore how growing conditions, tea varieties, harvesting practices and processing methods influence the characteristics of tea sourced from Kenya.",
+    read: "Origin guide",
+    url: "",
+    image: ""
+  },
+  {
+    cat: "Logistics",
+    date: "Export Guide",
+    title: "Preparing Kenyan Tea for Export",
+    excerpt: "An introduction to export preparation, packaging requirements, shipment documentation and the coordination involved in delivering tea to international buyers.",
+    read: "Export guide",
+    url: "",
+    image: ""
+  },
+  {
+    cat: "Quality",
+    date: "Tea Grade Guide",
+    title: "Understanding Common Kenyan Tea Grades",
+    excerpt: "Discover the differences between common CTC grades and selected Orthodox grades, and how product specifications help buyers identify suitable teas.",
+    read: "Quality guide",
+    url: "",
+    image: ""
+  },
+  {
+    cat: "Sustainability",
+    date: "Industry Guide",
+    title: "The Role of Smallholder Farmers in Kenyan Tea",
+    excerpt: "Learn about the contribution of smallholder farmers to Kenya's tea industry and their role in the wider production and supply chain.",
+    read: "Industry guide",
+    url: "",
+    image: ""
+  },
+  {
+    cat: "Industry",
+    date: "Buyer Guide",
+    title: "Choosing Between CTC and Orthodox Tea",
+    excerpt: "Compare the broad characteristics of CTC and Orthodox tea to help assess product requirements, intended use, grade preferences and customer specifications.",
+    read: "Buyer guide",
+    url: "",
+    image: ""
+  },
 ];
 
 /* ───────────── 3. HELPERS ───────────── */
@@ -85,7 +133,8 @@ const categorise = (t: string) => CATEGORY_RULES.find(([re]) => re.test(t))?.[1]
 
 // Keep only genuine tea-trade stories
 const isRelevant = (t: string) =>
-  /\btea\b|\bKTDA\b|\bEATTA\b/i.test(t) && !/spill the tea|tea party|bubble tea|milk tea|tea shop|tea room/i.test(t);
+  /\btea\b|\bKTDA\b|\bEATTA\b|Mombasa Tea Auction|Tea Board of Kenya/i.test(t) &&
+  !/spill the tea|tea party|bubble tea|milk tea|tea shop|tea room/i.test(t);
 
 async function loadFeed(url: string): Promise<Article[]> {
   const ctrl = new AbortController();
@@ -153,8 +202,8 @@ const rest = articles.slice(1);
 const tags = ["Auction", "CTC", "Orthodox", "Origin", "Sustainability", "Logistics", "Quality", "Central Asia", "Middle East"];
 ---
 <Base
-  title="Insights — News & Market Notes from Mombasa"
-  description="Tea market updates, origin reports, shipping guides and quality primers from the Mombasa auction floor."
+  title="Kenyan Tea Market News & Insights | Drinco International"
+  description="Follow Kenyan tea market news, Mombasa auction updates, CTC and Orthodox tea insights, export logistics and sourcing guidance from Drinco International."
 >
   <Header />
 
@@ -173,7 +222,7 @@ const tags = ["Auction", "CTC", "Orthodox", "Origin", "Sustainability", "Logisti
       Notes from<br/><span class="text-[#b9a48a]">the auction floor.</span>
     </h1>
     <p class="mt-8 text-lg text-[#f4ecdc]/85 max-w-2xl leading-relaxed">
-      Market updates, origin reports and shipping news from across the tea trade — refreshed automatically from leading industry sources.
+      Tea industry news, Mombasa auction coverage, origin insights and export guidance for buyers sourcing tea from Kenya and beyond.
     </p>
   </div>
 </section>
@@ -214,7 +263,7 @@ const tags = ["Auction", "CTC", "Orthodox", "Origin", "Sustainability", "Logisti
             loading="eager"
             onerror={`if (!this.dataset.fallback) {
               this.dataset.fallback = "true";
-              this.src = "${base}images/tea-plantation-highlands.png";
+              this.src = "${base}images/tea-plantation-highlands.webp";
             } else {
               this.style.display = "none";
               this.nextElementSibling.style.display = "flex";
@@ -222,14 +271,17 @@ const tags = ["Auction", "CTC", "Orthodox", "Origin", "Sustainability", "Logisti
           />
 
           <div
-            class="absolute inset-0 hidden items-center justify-center"
+            class="absolute inset-0 hidden flex-col items-center justify-center gap-3 p-8 text-center"
             aria-hidden="true"
           >
             <span
-              class="text-[#b9a48a] text-9xl"
+              class="text-[#b9a48a] text-7xl"
               style="font-family:'DM Serif Display',serif;"
             >
-              01
+              Drinco
+            </span>
+            <span class="text-[#f4ecdc]/80 text-xs uppercase tracking-[0.25em]">
+              Tea Market Insights
             </span>
           </div>
 
@@ -289,14 +341,14 @@ const tags = ["Auction", "CTC", "Orthodox", "Origin", "Sustainability", "Logisti
       Looking to source Kenyan tea?
     </h2>
     <p class="mt-5 text-[#f4ecdc]/80">
-      Tell us the grade, volume and destination. We will come back with availability, samples and a quote against current Mombasa auction prices.
+      Share your preferred tea grade, quantity, packaging and destination. We will review your requirements and discuss available options, specifications and export arrangements.
     </p>
     <div class="mt-10 flex flex-wrap justify-center gap-4">
-      <a href={`${base}contact`} class="inline-flex items-center gap-2 px-7 py-4 bg-[#b9a48a] text-[#0d3329] font-semibold hover:bg-[#d4b896] transition-colors">
+      <a href={`${base}contact/`} class="inline-flex items-center gap-2 px-7 py-4 bg-[#b9a48a] text-[#0d3329] font-semibold hover:bg-[#d4b896] transition-colors">
         Request a Quote
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
-      <a href={`${base}our-tea`} class="inline-flex items-center gap-2 px-7 py-4 border border-[#f4ecdc]/40 text-[#f4ecdc] hover:bg-[#f4ecdc]/10 transition-colors">
+      <a href={`${base}our-tea/`} class="inline-flex items-center gap-2 px-7 py-4 border border-[#f4ecdc]/40 text-[#f4ecdc] hover:bg-[#f4ecdc]/10 transition-colors">
         Explore Our Teas
       </a>
     </div>
