@@ -205,19 +205,37 @@ const tags = ["Auction", "CTC", "Orthodox", "Origin", "Sustainability", "Logisti
             </a>
           )}
         </div>
-        <div class="bg-[#0d3329] aspect-[4/3] flex items-center justify-center overflow-hidden">
-          {featured.image ? (
-            <img
-              src={featured.image}
-              alt={featured.title}
-              class="w-full h-full object-cover"
-              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-            />
-          ) : null}
-          <div class={featured.image ? "hidden" : "flex items-center justify-center"}>
-            <span class="text-[#b9a48a] text-9xl" style="font-family:'DM Serif Display',serif;">01</span>
+        
+        <div class="bg-[#0d3329] aspect-[4/3] relative overflow-hidden">
+          <img
+            src={featured.image || `${base}images/tea-market.webp`}
+            alt={featured.title}
+            class="featured-market-image absolute inset-0 w-full h-full object-cover"
+            loading="eager"
+            onerror={`if (!this.dataset.fallback) {
+              this.dataset.fallback = "true";
+              this.src = "${base}images/tea-plantation-highlands.png";
+            } else {
+              this.style.display = "none";
+              this.nextElementSibling.style.display = "flex";
+            }`}
+          />
+
+          <div
+            class="absolute inset-0 hidden items-center justify-center"
+            aria-hidden="true"
+          >
+            <span
+              class="text-[#b9a48a] text-9xl"
+              style="font-family:'DM Serif Display',serif;"
+            >
+              01
+            </span>
           </div>
+
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0d3329]/35 to-transparent pointer-events-none"></div>
         </div>
+
       </article>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-[#0d3329]/10 border border-[#0d3329]/10">
