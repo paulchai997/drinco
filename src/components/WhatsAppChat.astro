@@ -15,7 +15,7 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(m
         <strong>Drinco International Limited</strong>
         <span><i></i> Tea enquiries</span>
       </div>
-      <button class="tea-chat__close" id="tea-chat-close" type="button" aria-label="Close welcome message">×</button>
+      <button type="button" class="tea-chat__close" data-close-welcome aria-label="Close welcome message">×</button>
     </div>
 
     <p>Hi there! Need quality tea for your business? We're here to help with sourcing and export enquiries.</p>
@@ -252,12 +252,27 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(m
 </style>
 
 <script>
-  const closeButton = document.getElementById("tea-chat-close");
-  const welcomeMessage = document.getElementById("tea-chat-welcome");
+  function initialiseWhatsAppChat() {
+    document.querySelectorAll("[data-close-welcome]").forEach((button) => {
+      if (button.dataset.initialised === "true") return;
 
-  closeButton?.addEventListener("click", () => {
-    if (welcomeMessage) {
-      welcomeMessage.hidden = true;
-    }
-  });
+      button.dataset.initialised = "true";
+
+      button.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const widget = button.closest(".tea-chat");
+        const welcome = widget?.querySelector(".tea-chat__welcome");
+
+        if (welcome) {
+          welcome.style.display = "none";
+        }
+      });
+    });
+  }
+
+  initialiseWhatsAppChat();
+
+  document.addEventListener("astro:page-load", initialiseWhatsAppChat);
 </script>
